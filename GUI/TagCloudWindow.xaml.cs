@@ -49,12 +49,12 @@ namespace GUI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog1 = new SaveFileDialog
+            var openFileDialog = new SaveFileDialog
             {
                 Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
             };
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                outFilename = openFileDialog1.FileName;
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                outFilename = openFileDialog.FileName;
             saver.Save(bitmap, outFilename);
         }
 
@@ -67,17 +67,16 @@ namespace GUI
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                inputFilename = openFileDialog1.FileName;
+            var openFileDialog = new OpenFileDialog {Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"};
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                inputFilename = openFileDialog.FileName;
         }
 
         private void FontSelector_Click(object sender, RoutedEventArgs e)
         {
-            var fontDialog1 = new FontDialog();
-            if (fontDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                fontName = fontDialog1.Font.Name;
+            var fontDialog = new FontDialog();
+            if (fontDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                fontName = fontDialog.Font.Name;
         }
 
         private void CreateCloud_Click(object sender, RoutedEventArgs e)

@@ -8,7 +8,7 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class PartOfSpeechFilter : IWordsFilter
     {
-        private Dictionary<PartsOfSpeech, string[]> d = new Dictionary<PartsOfSpeech, string[]>()
+        private readonly Dictionary<PartsOfSpeech, string[]> partsOfSpeechAndTags = new Dictionary<PartsOfSpeech, string[]>()
         {
             {PartsOfSpeech.Pronoun, new []{"PRP", "PRP$", "WP", "WP$"}},
             {PartsOfSpeech.Verb, new []{"MD", "RB", "RBR", "RBS", "TO", "VB", "VBD", "VBN", "VBP", "VBZ", "WRB"} },
@@ -34,7 +34,7 @@ namespace TagsCloudVisualization.WordAnalyzer
         public bool CheckWord(Word word)
         {
             var POSTags = PosTagger.Tag(new[] { word.Text });
-            return excludedPartsOfSpeech.All(excludePart => !d[excludePart].Contains(POSTags[0]));
+            return excludedPartsOfSpeech.All(excludePart => !partsOfSpeechAndTags[excludePart].Contains(POSTags[0]));
         }
     }
 }
