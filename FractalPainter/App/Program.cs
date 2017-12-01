@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using FractalPainting.Infrastructure;
 using Ninject;
 
 namespace FractalPainting.App
@@ -12,16 +13,24 @@ namespace FractalPainting.App
         [STAThread]
         private static void Main()
         {
-            try
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+        //    try
+        //    {
+        //        var conteiner = new StandartKernel();
+        //        conteiner.Bind(x => x.FromThisAssembly()
+        //            .SelectAllClasses()
+        //            .InheritedFrom(typeof(IUiAction))
+        //            .BindAllInterfaces()
+        //            .Configure(y => y.InSingletonScope()
+        //            ));
+               
+        //        Application.EnableVisualStyles();
+        //        Application.SetCompatibleTextRenderingDefault(false);
+        //        Application.Run(new MainForm());
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show(e.Message);
+        //    }
         }
     }
 }
