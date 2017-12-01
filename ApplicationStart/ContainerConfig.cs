@@ -37,6 +37,7 @@ namespace ApplicationStart
             });
             builder.RegisterType<LogarithmicFontSizeCalculator>().As<IFontSizeСalculator>();
             builder.RegisterType<Gui>().AsSelf();
+            builder.RegisterType<ConsoleUI>().AsSelf();
             builder.RegisterType<TagCloudVizualizer>().AsSelf();
             return builder.Build();
         }

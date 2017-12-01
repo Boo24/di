@@ -10,10 +10,10 @@ namespace ApplicationStart.UI
         private CloudCreater cloudCreater;
         private IReader reader;
         private ITextParser parser;
-        private DefaultImageSaver saver;
+        private IImageSaver saver;
         public string[] args;
         private TagCloudVizualizer visualizer;
-        public ConsoleUI(CloudCreater cloudCreater,IReader reader, ITextParser parser,TagCloudVizualizer visualizer,DefaultImageSaver saver)
+        public ConsoleUI(CloudCreater cloudCreater,IReader reader, ITextParser parser,TagCloudVizualizer visualizer, IImageSaver saver)
         {
             this.cloudCreater = cloudCreater;
             this.reader = reader;
