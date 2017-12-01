@@ -1,5 +1,7 @@
-﻿using ApplicationStart.UI;
+﻿using System.Collections.Generic;
+using ApplicationStart.UI;
 using Autofac;
+using Autofac.Core;
 using TagsCloudVisualization;
 using TagsCloudVisualization.Geometry;
 using TagsCloudVisualization.Geometry.Layouter;
@@ -24,6 +26,15 @@ namespace ApplicationStart
             builder.RegisterType<CircularLayouter>().As<ILayouter>();
             builder.RegisterType<ArchimedeanSpiral>().As<ISpiral>();
             builder.RegisterType<DefaultImageSaver>().As<IImageSaver>();
+            builder.RegisterType<PartOfSpeechFilter>().As<IWordsFilter>().WithParameter("excludedPartsOfSpeech", new List<PartsOfSpeech>()
+            {
+                PartsOfSpeech.Adjective,
+                PartsOfSpeech.Pronoun,
+                PartsOfSpeech.Interjection,
+                PartsOfSpeech.Particle,
+                PartsOfSpeech.Verb,
+                PartsOfSpeech.Preposition
+            });
             builder.RegisterType<LogarithmicFontSizeCalculator>().As<IFontSizeСalculator>();
             builder.RegisterType<Gui>().AsSelf();
             builder.RegisterType<TagCloudVizualizer>().AsSelf();

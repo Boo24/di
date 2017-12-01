@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpNL, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Knuppe.SharpNL.1.1.3\lib\net45\SharpNL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -67,9 +70,14 @@
     <Compile Include="WordAnalyzer\IBlackList.cs" />
     <Compile Include="WordAnalyzer\IWordConverter.cs" />
     <Compile Include="WordAnalyzer\IWordsFilter.cs" />
+    <Compile Include="WordAnalyzer\PartOfSpeechFilter.cs" />
+    <Compile Include="WordAnalyzer\PartsOfSpeech.cs" />
     <Compile Include="WordAnalyzer\ShortWordsFilter.cs" />
     <Compile Include="WordAnalyzer\Word.cs" />
     <Compile Include="WordAnalyzer\WordsAnalyzer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

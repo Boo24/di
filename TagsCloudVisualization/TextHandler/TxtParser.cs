@@ -15,7 +15,7 @@ namespace TagsCloudVisualization.TextHandler
         {
             var matches = wordPattern.Matches(text);
             for (var i = 0; i < matches.Count; i++)
-                yield return matches[i].Groups[1].Value;
+                yield return matches[i].Groups[1].Value.ToLower();
         }
 
         private IEnumerable<Word> GetAllWords(IEnumerable<string> words)
