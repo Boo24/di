@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0EB07E98-AB56-45A1-8AA4-032FED8F1BCC}</ProjectGuid>
+    <ProjectGuid>{748CB0DE-A0C7-4FF4-A23D-F2EFF777A35F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ApplicationStart</RootNamespace>
     <AssemblyName>ApplicationStart</AssemblyName>
@@ -35,9 +35,6 @@
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,13 +64,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\tdd\TagsCloudVisualization\TagsCloudVisualization.csproj">
-      <Project>{46986e1b-f20c-4466-bde6-d530b3f49d62}</Project>
-      <Name>TagsCloudVisualization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TagCloudVis\GUI.csproj">
-      <Project>{73833967-47d2-4d33-bd90-be60933b9a2c}</Project>
+    <ProjectReference Include="..\GUI\GUI.csproj">
+      <Project>{ddf811c1-52b7-4ab7-a1d8-ef15e3e85ed3}</Project>
       <Name>GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TagsCloudVisualization\TagsCloudVisualization.csproj">
+      <Project>{db9df275-8ed4-4737-88d1-9c05a9130801}</Project>
+      <Name>TagsCloudVisualization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

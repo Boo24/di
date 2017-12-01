@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -12,8 +11,11 @@ using TagsCloudVisualization.TextHandler;
 using Color = System.Drawing.Color;
 using Image = System.Windows.Controls.Image;
 
-namespace TagCloudVis
+namespace GUI
 {
+    /// <summary>
+    /// Логика взаимодействия для TagCloudWindow.xaml
+    /// </summary>
     public partial class TagCloudWindow : Window
     {
         private Color backgroundColor = Color.AliceBlue;
@@ -25,9 +27,9 @@ namespace TagCloudVis
         private TagCloudVizualizer visualizer;
         private string inputFilename;
         private string outFilename;
-        private int minFontSize=10;
-        private int maxFontSize=25;
-        public int wordsCount=150;
+        private int minFontSize = 10;
+        private int maxFontSize = 25;
+        public int wordsCount = 150;
         private string fontName = "Arial";
 
         public TagCloudWindow(CloudCreater cloudCreater, IReader reader, ITextParser parser, TagCloudVizualizer visualizer, IImageSaver saver)
@@ -42,7 +44,7 @@ namespace TagCloudVis
             InputText.Text = (string)InputText.Tag;
             MinFontSize.Text = "12";
             MaxFontSize.Text = "24";
-            this.Show(); 
+            this.Show();
         }
 
         public TagCloudWindow() => InitializeComponent();
@@ -67,7 +69,7 @@ namespace TagCloudVis
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            FileDialog openFileDialog1 = new OpenFileDialog();
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 inputFilename = openFileDialog1.FileName;
@@ -101,13 +103,13 @@ namespace TagCloudVis
             canvas.Children.Add(cloudImage);
 
         }
-        private string GetText() =>inputFilename != null ? reader.Read(inputFilename) : InputText.Text;
+        private string GetText() => inputFilename != null ? reader.Read(inputFilename) : InputText.Text;
 
         private void GetParams()
         {
             minFontSize = int.Parse(MinFontSize.Text);
             maxFontSize = int.Parse(MaxFontSize.Text);
-            wordsCount =  int.Parse(WordsCount.Text);
+            wordsCount = int.Parse(WordsCount.Text);
         }
     }
 }

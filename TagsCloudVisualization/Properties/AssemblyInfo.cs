@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("GUICreator")]
+[assembly: AssemblyTitle("TagsCloudVisualization")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GUICreator")]
+[assembly: AssemblyProduct("TagsCloudVisualization")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("dc76b8c4-4877-4899-960b-9c666ac479c0")]
+[assembly: Guid("db9df275-8ed4-4737-88d1-9c05a9130801")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TagCloudVis.Properties
+namespace GUI.Properties
 {
 
 

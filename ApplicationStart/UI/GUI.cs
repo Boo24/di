@@ -1,4 +1,4 @@
-﻿using TagCloudVis;
+﻿using GUI;
 using TagsCloudVisualization;
 using TagsCloudVisualization.Geometry;
 using TagsCloudVisualization.TextHandler;

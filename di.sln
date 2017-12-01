@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalPainter", "FractalPainter\FractalPainter.csproj", "{2A3ACF0E-1D07-4A1A-8320-F99DC2DE791F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagsCloudVisualization", "..\..\..\tdd\TagsCloudVisualization\TagsCloudVisualization.csproj", "{46986E1B-F20C-4466-BDE6-D530B3F49D62}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4638057D-18E8-4089-9E31-764CE75C7F5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "TagCloudVis\GUI.csproj", "{73833967-47D2-4D33-BD90-BE60933B9A2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationStart", "ApplicationStart\ApplicationStart.csproj", "{748CB0DE-A0C7-4FF4-A23D-F2EFF777A35F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationStart", "ApplicationStart\ApplicationStart.csproj", "{0EB07E98-AB56-45A1-8AA4-032FED8F1BCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagsCloudVisualization", "TagsCloudVisualization\TagsCloudVisualization.csproj", "{DB9DF275-8ED4-4737-88D1-9C05A9130801}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{DDF811C1-52B7-4AB7-A1D8-EF15E3E85ED3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,22 +23,22 @@ Global
 		{2A3ACF0E-1D07-4A1A-8320-F99DC2DE791F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3ACF0E-1D07-4A1A-8320-F99DC2DE791F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3ACF0E-1D07-4A1A-8320-F99DC2DE791F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46986E1B-F20C-4466-BDE6-D530B3F49D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46986E1B-F20C-4466-BDE6-D530B3F49D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46986E1B-F20C-4466-BDE6-D530B3F49D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46986E1B-F20C-4466-BDE6-D530B3F49D62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4638057D-18E8-4089-9E31-764CE75C7F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4638057D-18E8-4089-9E31-764CE75C7F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4638057D-18E8-4089-9E31-764CE75C7F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4638057D-18E8-4089-9E31-764CE75C7F5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73833967-47D2-4D33-BD90-BE60933B9A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73833967-47D2-4D33-BD90-BE60933B9A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73833967-47D2-4D33-BD90-BE60933B9A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73833967-47D2-4D33-BD90-BE60933B9A2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EB07E98-AB56-45A1-8AA4-032FED8F1BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EB07E98-AB56-45A1-8AA4-032FED8F1BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EB07E98-AB56-45A1-8AA4-032FED8F1BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EB07E98-AB56-45A1-8AA4-032FED8F1BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{748CB0DE-A0C7-4FF4-A23D-F2EFF777A35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{748CB0DE-A0C7-4FF4-A23D-F2EFF777A35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{748CB0DE-A0C7-4FF4-A23D-F2EFF777A35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{748CB0DE-A0C7-4FF4-A23D-F2EFF777A35F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB9DF275-8ED4-4737-88D1-9C05A9130801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB9DF275-8ED4-4737-88D1-9C05A9130801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB9DF275-8ED4-4737-88D1-9C05A9130801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB9DF275-8ED4-4737-88D1-9C05A9130801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF811C1-52B7-4AB7-A1D8-EF15E3E85ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF811C1-52B7-4AB7-A1D8-EF15E3E85ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF811C1-52B7-4AB7-A1D8-EF15E3E85ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF811C1-52B7-4AB7-A1D8-EF15E3E85ED3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

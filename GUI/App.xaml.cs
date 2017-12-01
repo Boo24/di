@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TagCloudVis
+namespace GUI
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml
