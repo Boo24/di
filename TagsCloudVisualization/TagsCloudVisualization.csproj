@@ -46,12 +46,14 @@
     <Compile Include="DefaultImageSaver.cs" />
     <Compile Include="Geometry\CloudCreater.cs" />
     <Compile Include="Geometry\IFontColorSelector.cs" />
+    <Compile Include="Geometry\IFontSizeСalculator.cs" />
     <Compile Include="Geometry\IRectanglesCloud.cs" />
     <Compile Include="Geometry\Layouter\ArchimedeanSpiral.cs" />
     <Compile Include="Geometry\Layouter\CircularLayouter.cs" />
     <Compile Include="Geometry\Layouter\ILayouter.cs" />
     <Compile Include="Geometry\Layouter\ISpiral.cs" />
     <Compile Include="Geometry\Layouter\LayouterComponent.cs" />
+    <Compile Include="Geometry\LogarithmicFontSizeCalculator.cs" />
     <Compile Include="Geometry\RandomColorSelector.cs" />
     <Compile Include="Geometry\RectanglesCloud.cs" />
     <Compile Include="Geometry\TagCloudVizualizer.cs" />

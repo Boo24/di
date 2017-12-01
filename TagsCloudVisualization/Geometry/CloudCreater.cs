@@ -10,15 +10,18 @@ namespace TagsCloudVisualization.Geometry
     {
         private int maxFontSize;
         private int minFontSize;
-        private const int FontSizeCoefficient = 5;
+        private int maxCountOfOccurrences;
+        private int minCountOfOccurrences;
         public IRectanglesCloud RectanglesCloud;
         private IFontColorSelector colorSelector;
+        private IFontSizeСalculator fontSizeСalculator;
         private WordsAnalyzer analizer;
-        public CloudCreater(WordsAnalyzer analizer,IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector)
+        public CloudCreater(WordsAnalyzer analizer,IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector, IFontSizeСalculator fontSizeСalculator)
         {
             RectanglesCloud = rectanglesCloud;
             this.colorSelector = colorSelector;
             this.analizer = analizer;
+            this.fontSizeСalculator = fontSizeСalculator;
         }
 
         public void Create(IEnumerable<Word> words, int maxFontSize, int minFontSize, int wordsCount, string fontName)
@@ -27,6 +30,8 @@ namespace TagsCloudVisualization.Geometry
             words = data.sortedWords;
             this.minFontSize = minFontSize;
             this.maxFontSize = maxFontSize;
+            this.minCountOfOccurrences = data.minCount;
+            this.maxCountOfOccurrences = data.maxCount;
             foreach (var word in words)
             {
                 var fontSize = CalculateWordSize(word);
@@ -37,8 +42,7 @@ namespace TagsCloudVisualization.Geometry
         }
 
         private int CalculateWordSize(Word word) =>
-            FontSizeCoefficient * (int) ((Math.Log(word.CountOfOccurrences) - Math.Log(minFontSize)) /
-                              (Math.Log(maxFontSize) - Math.Log(minFontSize)));
+            fontSizeСalculator.Calculate(word, minFontSize, maxFontSize, maxCountOfOccurrences, minCountOfOccurrences);
 
         private Size CalculateRectangleSize(Word word, int wordSize, string fontName)
         {
@@ -47,10 +51,6 @@ namespace TagsCloudVisualization.Geometry
             return TextRenderer.MeasureText(word.Text, new Font(fontName, wordSize), proposedSize,flags);
         }
 
-        public void Clear()
-        {
-            RectanglesCloud.LayouterComponents.Clear();
-            RectanglesCloud.Restart();
-        }
+        public void Clear() => RectanglesCloud.Restart();
     }
 }

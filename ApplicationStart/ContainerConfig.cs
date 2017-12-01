@@ -24,6 +24,7 @@ namespace ApplicationStart
             builder.RegisterType<CircularLayouter>().As<ILayouter>();
             builder.RegisterType<ArchimedeanSpiral>().As<ISpiral>();
             builder.RegisterType<DefaultImageSaver>().As<IImageSaver>();
+            builder.RegisterType<LogarithmicFontSizeCalculator>().As<IFontSizeСalculator>();
             builder.RegisterType<Gui>().AsSelf();
             builder.RegisterType<TagCloudVizualizer>().AsSelf();
             return builder.Build();

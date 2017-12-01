@@ -78,6 +78,10 @@ namespace TagsCloudVisualization.Geometry
         internal int MoveCoordinateToCenter(int cur, int center) =>
             cur < center ? cur + 1 : cur - 1;
 
-        public void Restart() => layouter.Restart();
+        public void Restart()
+        {
+            LayouterComponents.Clear();
+            layouter.Restart();
+        }
     }
 }
