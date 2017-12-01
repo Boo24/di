@@ -22,7 +22,7 @@ namespace ApplicationStart
             builder.RegisterType<RandomColorSelector>().As<IFontColorSelector>();
             builder.RegisterType<CircularLayouter>().As<ILayouter>();
             builder.RegisterType<ArchimedeanSpiral>().As<ISpiral>();
-            builder.RegisterType<DefaultImageSaver>().AsSelf();
+            builder.RegisterType<DefaultImageSaver>().As<IImageSaver>();
             builder.RegisterType<Gui>().AsSelf();
             builder.RegisterType<TagCloudVizualizer>().AsSelf();
             return builder.Build();
