@@ -10,6 +10,7 @@ namespace TagsCloudVisualization.Geometry
     {
         private int maxFontSize;
         private int minFontSize;
+        private const int FontSizeCoefficient = 5;
         public IRectanglesCloud RectanglesCloud;
         private IFontColorSelector colorSelector;
         private WordsAnalyzer analizer;
@@ -35,18 +36,21 @@ namespace TagsCloudVisualization.Geometry
             }
         }
 
-        private int CalculateWordSize(Word word)
-        {
-            var size= Math.Max(3*(int)((Math.Log(word.CountOfOccurrences) - Math.Log(minFontSize)) /
-                   (Math.Log(maxFontSize) - Math.Log(minFontSize))), minFontSize-5);
-            return size;
-        }
+        private int CalculateWordSize(Word word) =>
+            FontSizeCoefficient * (int) ((Math.Log(word.CountOfOccurrences) - Math.Log(minFontSize)) /
+                              (Math.Log(maxFontSize) - Math.Log(minFontSize)));
 
         private Size CalculateRectangleSize(Word word, int wordSize, string fontName)
         {
-            Size proposedSize = new Size(int.MaxValue, int.MaxValue);
-            TextFormatFlags flags = TextFormatFlags.NoPadding;
+            var proposedSize = new Size(int.MaxValue, int.MaxValue);
+            var flags = TextFormatFlags.NoPadding;
             return TextRenderer.MeasureText(word.Text, new Font(fontName, wordSize), proposedSize,flags);
+        }
+
+        public void Clear()
+        {
+            RectanglesCloud.LayouterComponents.Clear();
+            RectanglesCloud.Restart();
         }
     }
 }

@@ -41,17 +41,17 @@
                 BorderThickness="3,0,0,0"/>
 
         <TextBox Name="InputText" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
-        <Button  Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2"  Content="Сохранить" IsDefault="True" Click="Save_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="LightGray"/>
+        <Button  Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2"  Content="Сохранить" IsDefault="True" Click="Save_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="0" Grid.Column="0"  Content="Выбрать файл" IsDefault="True" Click="Open_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2"  Content="Создать облако" IsDefault="True" Click="CreateCloud_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
-        <Button  Grid.Row="8" Grid.Column="0" Content="Выбрать шрифт" IsDefault="True" Click="FontSelector_Click" Background="LavenderBlush" FontFamily="Palatino Linotype"/>
-        <Button  Grid.Row="8" Grid.Column="1" Content="Выбрать фон" IsDefault="True" Click="BackgroundColorSelect_Click" Background="LavenderBlush" FontFamily="Palatino Linotype"/>
-        <TextBox Name="MinFontSize" Grid.Row="10" Grid.Column="1"/>
-        <TextBox Name="MaxFontSize" Grid.Row="11" Grid.Column="1" />
-        <TextBlock  Grid.Row="11" Grid.Column="0" Text="Макс размер шрифта" TextAlignment="Center" FontFamily="Palatino Linotype"/>
-        <TextBox Name="WordsCount" Grid.Row="6" Grid.Column="1" Text="{Binding Path=wordsCount}"/>
-        <TextBlock  Grid.Row="6" Grid.Column="0" Text="Количесиво слов" TextAlignment="Center" FontFamily="Palatino Linotype"/>
-        <TextBlock  Grid.Row="10" Grid.Column="0" Text="Минимальный размер шрифта" TextAlignment="Center" FontFamily="Palatino Linotype"/>
+        <Button  Grid.Row="8" Grid.Column="0" Content="Выбрать шрифт" IsDefault="True" Click="FontSelector_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
+        <Button  Grid.Row="8" Grid.Column="1" Content="Выбрать фон" IsDefault="True" Click="BackgroundColorSelect_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
+        <TextBox Text="{Binding MinFontSize}" Grid.Row="10" Grid.Column="1" TextAlignment="Center"/>
+        <TextBox Text="{Binding MaxFontSize}" Grid.Row="11" Grid.Column="1" TextAlignment="Center"/>
+        <TextBlock  Grid.Row="11" Grid.Column="0" Text="Макс размер шрифта" TextAlignment="Center" FontFamily="Palatino Linotype" TextWrapping="Wrap" />
+        <TextBox Text="{Binding WordsCount}" Grid.Row="6" Grid.Column="1" TextAlignment="Center"/>
+        <TextBlock  Grid.Row="6" Grid.Column="0" Text="Количество слов" TextAlignment="Center" FontFamily="Palatino Linotype"/>
+        <TextBlock  Grid.Row="10" Grid.Column="0" Text="Мин размер шрифта" TextAlignment="Center" FontFamily="Palatino Linotype" TextWrapping="Wrap"/>
         <ScrollViewer Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="15"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
             <Canvas x:Name="canvas"/>
         </ScrollViewer>

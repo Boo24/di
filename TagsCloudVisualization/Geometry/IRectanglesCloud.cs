@@ -12,6 +12,7 @@ namespace TagsCloudVisualization.Geometry
         Size Size { get; }
         List<LayouterComponent> LayouterComponents { get; }
         Point Center { get; }
+        void Restart();
 
     }
 }

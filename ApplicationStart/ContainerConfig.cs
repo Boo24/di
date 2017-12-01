@@ -13,6 +13,7 @@ namespace ApplicationStart
         public IContainer GetContainer()
         {
             var builder = new ContainerBuilder();
+            builder.RegisterType<ShortWordsFilter>().As<IWordsFilter>();
             builder.RegisterType<TxtReader>().As<IReader>();
             builder.RegisterType<TxtParser>().As<ITextParser>();
             builder.RegisterType<CloudCreater>().AsSelf();

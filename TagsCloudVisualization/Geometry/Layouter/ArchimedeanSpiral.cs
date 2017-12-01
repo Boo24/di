@@ -42,6 +42,8 @@ namespace TagsCloudVisualization.Geometry.Layouter
             points.MoveNext();
             return points.Current;
         }
-       
+
+        public void Restart() => points = GetPoints();
+
     }
 }

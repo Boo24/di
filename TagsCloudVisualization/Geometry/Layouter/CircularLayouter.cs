@@ -16,5 +16,7 @@ namespace TagsCloudVisualization.Geometry.Layouter
                 return foundRectangle;
             }
         }
+
+        public void Restart() => spiral.Restart();
     }
 }

@@ -27,9 +27,9 @@ namespace GUI
         private TagCloudVizualizer visualizer;
         private string inputFilename;
         private string outFilename;
-        private int minFontSize = 10;
-        private int maxFontSize = 25;
-        public int wordsCount = 150;
+        public int MinFontSize { get; set; } = 12;
+        public int MaxFontSize { get; set; } = 24;
+        public int WordsCount { get; set; } = 150;
         private string fontName = "Arial";
 
         public TagCloudWindow(CloudCreater cloudCreater, IReader reader, ITextParser parser, TagCloudVizualizer visualizer, IImageSaver saver)
@@ -40,10 +40,8 @@ namespace GUI
             this.visualizer = visualizer;
             this.parser = parser;
             InitializeComponent();
-            InputText.Tag = "Или вставить текст сюда...";
-            InputText.Text = (string)InputText.Tag;
-            MinFontSize.Text = "12";
-            MaxFontSize.Text = "24";
+            InputText.Text = "Или вставить текст сюда...";
+            DataContext = this;
             this.Show();
         }
 
@@ -84,10 +82,10 @@ namespace GUI
 
         private void CreateCloud_Click(object sender, RoutedEventArgs e)
         {
-            GetParams();
+            cloudCreater.Clear();
             var text = GetText();
             var words = parser.Parse(text);
-            cloudCreater.Create(words, maxFontSize, minFontSize, wordsCount, fontName);
+            cloudCreater.Create(words, MaxFontSize, MinFontSize, WordsCount, fontName);
             bitmap = visualizer.Vizualize(cloudCreater.RectanglesCloud, backgroundColor);
             var hBitmap = bitmap.GetHbitmap();
             var cloudImage = new Image
@@ -105,11 +103,5 @@ namespace GUI
         }
         private string GetText() => inputFilename != null ? reader.Read(inputFilename) : InputText.Text;
 
-        private void GetParams()
-        {
-            minFontSize = int.Parse(MinFontSize.Text);
-            maxFontSize = int.Parse(MaxFontSize.Text);
-            wordsCount = int.Parse(WordsCount.Text);
-        }
     }
 }

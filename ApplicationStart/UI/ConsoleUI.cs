@@ -23,13 +23,13 @@ namespace ApplicationStart.UI
         }
         public void Run()
         {
-            //var options = new Options();
-            //CommandLine.Parser.Default.ParseArguments(args, options);
-            //var text = reader.Read(options.InputFile);
-            //var words = parser.Parse(text);
-            //cloudCreater.Create(words, options.MaxFontSize, options.MinFontSize, options.WordsCount, options.Font);
-            //var bitmap = visualizer.Vizualize(cloudCreater.RectanglesCloud, Color.AliceBlue);
-            //saver.Save(bitmap, options.OutputFile);
+            var options = new Options();
+            CommandLine.Parser.Default.ParseArguments(args, options);
+            var text = reader.Read(options.InputFile);
+            var words = parser.Parse(text);
+            cloudCreater.Create(words, options.MaxFontSize, options.MinFontSize, options.WordsCount, options.Font);
+            var bitmap = visualizer.Vizualize(cloudCreater.RectanglesCloud, Color.AliceBlue);
+            saver.Save(bitmap, options.OutputFile);
         }
     }
 }

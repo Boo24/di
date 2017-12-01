@@ -46,7 +46,7 @@ namespace TagsCloudVisualization.Geometry
             UpdateBordersAndSize(foundRect);
         }
 
-        private bool CheckIntersectionWithExistigRectangles(Rectangle rect)
+        internal bool CheckIntersectionWithExistigRectangles(Rectangle rect)
         {
             for (var i=LayouterComponents.Count-1; i>=0; i--)
                 if (LayouterComponents[i].Location.IntersectsWith(rect))
@@ -77,5 +77,7 @@ namespace TagsCloudVisualization.Geometry
         }
         internal int MoveCoordinateToCenter(int cur, int center) =>
             cur < center ? cur + 1 : cur - 1;
+
+        public void Restart() => layouter.Restart();
     }
 }

@@ -64,8 +64,9 @@
     <Compile Include="WordAnalyzer\DefaultBlackList.cs" />
     <Compile Include="WordAnalyzer\IBlackList.cs" />
     <Compile Include="WordAnalyzer\IWordConverter.cs" />
+    <Compile Include="WordAnalyzer\IWordsFilter.cs" />
+    <Compile Include="WordAnalyzer\ShortWordsFilter.cs" />
     <Compile Include="WordAnalyzer\Word.cs" />
-    <Compile Include="WordAnalyzer\WordConverter.cs" />
     <Compile Include="WordAnalyzer\WordsAnalyzer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
