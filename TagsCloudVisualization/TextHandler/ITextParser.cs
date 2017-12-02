@@ -5,6 +5,6 @@ namespace TagsCloudVisualization.TextHandler
 {
     public interface ITextParser
     {
-        IEnumerable<Word> Parse(string text);
+        IEnumerable<string> Parse(string text);
     }
 }

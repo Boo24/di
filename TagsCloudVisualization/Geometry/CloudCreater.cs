@@ -24,10 +24,10 @@ namespace TagsCloudVisualization.Geometry
             this.fontSizeСalculator = fontSizeСalculator;
         }
 
-        public void Create(IEnumerable<Word> words, int maxFontSize, int minFontSize, int wordsCount, string fontName)
+        public void Create(IEnumerable<string> wordsFlow, int maxFontSize, int minFontSize, int wordsCount, string fontName)
         {
-            var data = analizer.Analyze(words, wordsCount);
-            words = data.sortedWords;
+            var data = analizer.Analyze(wordsFlow, wordsCount);
+            var words = data.sortedWords;
             this.minFontSize = minFontSize;
             this.maxFontSize = maxFontSize;
             this.minCountOfOccurrences = data.minCount;

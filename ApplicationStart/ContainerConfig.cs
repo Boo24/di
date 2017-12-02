@@ -35,6 +35,7 @@ namespace ApplicationStart
                 PartsOfSpeech.Verb,
                 PartsOfSpeech.Preposition
             });
+            builder.RegisterType<InitalFormConverter>().As<IWordConverter>();
             builder.RegisterType<LogarithmicFontSizeCalculator>().As<IFontSizeСalculator>();
             builder.RegisterType<Gui>().AsSelf();
             builder.RegisterType<ConsoleUI>().AsSelf().WithProperty("Args", args);
