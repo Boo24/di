@@ -11,9 +11,9 @@ namespace ApplicationStart.UI
         private IReader reader;
         private ITextParser parser;
         private IImageSaver saver;
-        public string[] args;
-        private TagCloudVizualizer visualizer;
-        public ConsoleUI(CloudCreater cloudCreater,IReader reader, ITextParser parser,TagCloudVizualizer visualizer, IImageSaver saver)
+        public string[] Args { get; private set; }
+        private TagCloudVisualizer visualizer;
+        public ConsoleUI(CloudCreater cloudCreater,IReader reader, ITextParser parser,TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreater = cloudCreater;
             this.reader = reader;
@@ -24,7 +24,7 @@ namespace ApplicationStart.UI
         public void Run()
         {
             var options = new Options();
-            CommandLine.Parser.Default.ParseArguments(args, options);
+            CommandLine.Parser.Default.ParseArguments(Args, options);
             var text = reader.Read(options.InputFile);
             var words = parser.Parse(text);
             cloudCreater.Create(words, options.MaxFontSize, options.MinFontSize, options.WordsCount, options.Font);

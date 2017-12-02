@@ -12,7 +12,7 @@ namespace ApplicationStart
 {
     public class ContainerConfig
     {
-        public IContainer GetContainer()
+        public IContainer GetContainer(string[] args)
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<ShortWordsFilter>().As<IWordsFilter>();
@@ -37,8 +37,8 @@ namespace ApplicationStart
             });
             builder.RegisterType<LogarithmicFontSizeCalculator>().As<IFontSizeСalculator>();
             builder.RegisterType<Gui>().AsSelf();
-            builder.RegisterType<ConsoleUI>().AsSelf();
-            builder.RegisterType<TagCloudVizualizer>().AsSelf();
+            builder.RegisterType<ConsoleUI>().AsSelf().WithProperty("Args", args);
+            builder.RegisterType<TagCloudVisualizer>().AsSelf();
             return builder.Build();
         }
     }

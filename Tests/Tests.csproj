@@ -53,8 +53,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TagCloudVizualizationTests\RectanglecCloud_Should.cs" />
-    <Compile Include="TagCloudVizualizationTests\WordsAnalyzer_Should.cs" />
+    <Compile Include="TagCloudVisualizationTests\RectanglecCloud_Should.cs" />
+    <Compile Include="TagCloudVisualizationTests\WordsAnalyzer_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

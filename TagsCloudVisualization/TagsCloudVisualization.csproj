@@ -59,7 +59,7 @@
     <Compile Include="Geometry\LogarithmicFontSizeCalculator.cs" />
     <Compile Include="Geometry\RandomColorSelector.cs" />
     <Compile Include="Geometry\RectanglesCloud.cs" />
-    <Compile Include="Geometry\TagCloudVizualizer.cs" />
+    <Compile Include="Geometry\TagCloudVisualizer.cs" />
     <Compile Include="IImageSaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextHandler\IReader.cs" />

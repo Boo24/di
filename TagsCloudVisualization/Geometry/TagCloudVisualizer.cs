@@ -2,7 +2,7 @@
 
 namespace TagsCloudVisualization.Geometry
 {
-    public class TagCloudVizualizer
+    public class TagCloudVisualizer
     {
         private const int FrameSize = 30; 
 

@@ -11,8 +11,8 @@ namespace ApplicationStart.UI
         private IReader reader;
         private IImageSaver saver;
         private ITextParser parser;
-        private TagCloudVizualizer visualizer;
-        public Gui(CloudCreater cloudCreater, IReader reader, ITextParser parser, TagCloudVizualizer visualizer, IImageSaver saver)
+        private TagCloudVisualizer visualizer;
+        public Gui(CloudCreater cloudCreater, IReader reader, ITextParser parser, TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreater = cloudCreater;
             this.reader = reader;

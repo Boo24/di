@@ -25,7 +25,7 @@ namespace GUI
         private IImageSaver saver;
         private Bitmap bitmap;
         private CloudCreater cloudCreater;
-        private TagCloudVizualizer visualizer;
+        private TagCloudVisualizer visualizer;
         private string inputFilename;
         private string outFilename;
         public int MinFontSize { get; set; } = 12;
@@ -34,7 +34,7 @@ namespace GUI
         private string fontName = "Arial";
 
         public TagCloudWindow(CloudCreater cloudCreater, IReader reader, ITextParser parser,
-            TagCloudVizualizer visualizer, IImageSaver saver)
+            TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreater = cloudCreater;
             this.reader = reader;
