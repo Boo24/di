@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-               Title="Визуализатор облака тегов" Height="638.333" Width="900" ResizeMode="NoResize"
+               Title="Визуализатор облака тегов" Height="638.333" Width="900" 
         Background="Lavender" WindowStyle="ThreeDBorderWindow">
     <Grid>
         <Grid.ColumnDefinitions>

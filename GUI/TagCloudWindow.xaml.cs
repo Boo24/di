@@ -13,6 +13,7 @@ using Image = System.Windows.Controls.Image;
 
 namespace GUI
 {
+    /// <inheritdoc />
     /// <summary>
     /// Логика взаимодействия для TagCloudWindow.xaml
     /// </summary>
@@ -32,7 +33,8 @@ namespace GUI
         public int WordsCount { get; set; } = 150;
         private string fontName = "Arial";
 
-        public TagCloudWindow(CloudCreater cloudCreater, IReader reader, ITextParser parser, TagCloudVizualizer visualizer, IImageSaver saver)
+        public TagCloudWindow(CloudCreater cloudCreater, IReader reader, ITextParser parser,
+            TagCloudVizualizer visualizer, IImageSaver saver)
         {
             this.cloudCreater = cloudCreater;
             this.reader = reader;
@@ -81,6 +83,7 @@ namespace GUI
 
         private void CreateCloud_Click(object sender, RoutedEventArgs e)
         {
+            canvas.Children.Clear();
             cloudCreater.Clear();
             var text = GetText();
             var words = parser.Parse(text);
@@ -95,12 +98,12 @@ namespace GUI
             cloudImage.BeginInit();
             cloudImage.Width = canvas.ActualWidth;
             cloudImage.Height = canvas.ActualHeight;
-            cloudImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            cloudImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero,
+                Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             cloudImage.EndInit();
             canvas.Children.Add(cloudImage);
-
         }
-        private string GetText() => inputFilename != null ? reader.Read(inputFilename) : InputText.Text;
 
+        private string GetText() => inputFilename != null ? reader.Read(inputFilename) : InputText.Text;
     }
 }
