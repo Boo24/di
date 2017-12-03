@@ -8,7 +8,7 @@ namespace TagsCloudVisualization.TextHandler
 {
     public class TxtParser : ITextParser
     {
-        private Regex wordPattern = new Regex("([a-z]+?|[а-я]+?)[^a-z,а-я]", RegexOptions.IgnoreCase);
+        private Regex wordPattern = new Regex("([a-z]+?)[^a-z]", RegexOptions.IgnoreCase);
         public IEnumerable<string> Parse(string text) => FindWords(text);
 
         private IEnumerable<string> FindWords(string text)
