@@ -9,7 +9,7 @@ using TagsCloudVisualization.WordAnalyzer;
 namespace Tests.TagCloudVisualizationTests
 {
     [TestFixture]
-    public class RectanglecCloud_Should
+    public class RectanglesCloud_Should
     {
         private RectanglesCloud rectCloud;
         [SetUp]
