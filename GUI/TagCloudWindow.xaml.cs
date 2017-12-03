@@ -53,7 +53,7 @@ namespace GUI
         {
             var openFileDialog = new SaveFileDialog
             {
-                Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
+                Filter = @"Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
             };
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 outFilename = openFileDialog.FileName;
@@ -69,7 +69,7 @@ namespace GUI
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog {Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"};
+            var openFileDialog = new OpenFileDialog {Filter = @"txt files (*.txt)|*.txt|All files (*.*)|*.*"};
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 inputFilename = openFileDialog.FileName;
         }
