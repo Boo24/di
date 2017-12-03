@@ -6,10 +6,10 @@ using TagsCloudVisualization.Geometry;
 using TagsCloudVisualization.Geometry.Layouter;
 using TagsCloudVisualization.WordAnalyzer;
 
-namespace TagsCloudVisualization.Tests
+namespace Tests.TagCloudVisualizationTests
 {
     [TestFixture]
-    class RectanglecCloud_Should
+    public class RectanglecCloud_Should
     {
         private RectanglesCloud rectCloud;
         [SetUp]
