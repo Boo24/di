@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using CommandLine.Text;
 
 namespace ApplicationStart.UI
 {
@@ -19,11 +20,13 @@ namespace ApplicationStart.UI
         [Option('f', "font", Required = false, DefaultValue = "Arial")]
         public string Font { get; set; }
 
-        [Option('c', "wCount", Required = false, DefaultValue = 150, HelpText = "Number of words in the cloud")]
+        [Option('c', "wCount", Required = false, HelpText = "Number of words in the cloud")]
         public int WordsCount { get; set; }
 
         [ParserState]
         public IParserState LastParserState { get; set; }
+        [HelpOption]
+        public string GetUsage() => HelpText.AutoBuild(this, (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
 
     }
 }
