@@ -7,14 +7,14 @@ namespace ApplicationStart.UI
 {
     public class Gui : IUI
     {
-        private CloudCreater cloudCreater;
+        private CloudCreator cloudCreator;
         private IReader reader;
         private IImageSaver saver;
         private ITextParser parser;
         private TagCloudVisualizer visualizer;
-        public Gui(CloudCreater cloudCreater, IReader reader, ITextParser parser, TagCloudVisualizer visualizer, IImageSaver saver)
+        public Gui(CloudCreator cloudCreator, IReader reader, ITextParser parser, TagCloudVisualizer visualizer, IImageSaver saver)
         {
-            this.cloudCreater = cloudCreater;
+            this.cloudCreator = cloudCreator;
             this.reader = reader;
             this.saver = saver;
             this.visualizer = visualizer;
@@ -23,7 +23,7 @@ namespace ApplicationStart.UI
         public void Run()
         {
             var app = new App();
-            app.Run(new TagCloudWindow(cloudCreater, reader, parser, visualizer, saver));
+            app.Run(new TagCloudWindow(cloudCreator, reader, parser, visualizer, saver));
         }
     }
 }

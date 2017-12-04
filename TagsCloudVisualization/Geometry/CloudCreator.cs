@@ -6,7 +6,7 @@ using TagsCloudVisualization.WordAnalyzer;
 
 namespace TagsCloudVisualization.Geometry
 {
-    public class CloudCreater
+    public class CloudCreator
     {
         private int maxFontSize;
         private int minFontSize;
@@ -16,7 +16,7 @@ namespace TagsCloudVisualization.Geometry
         private IFontColorSelector colorSelector;
         private IFontSizeСalculator fontSizeСalculator;
         private WordsAnalyzer analizer;
-        public CloudCreater(WordsAnalyzer analizer,IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector, IFontSizeСalculator fontSizeСalculator)
+        public CloudCreator(WordsAnalyzer analizer,IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector, IFontSizeСalculator fontSizeСalculator)
         {
             RectanglesCloud = rectanglesCloud;
             this.colorSelector = colorSelector;

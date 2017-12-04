@@ -7,15 +7,15 @@ namespace ApplicationStart.UI
 {
     public class ConsoleUI :IUI
     {
-        private CloudCreater cloudCreater;
+        private CloudCreator cloudCreator;
         private IReader reader;
         private ITextParser parser;
         private IImageSaver saver;
         public string[] Args { get; private set; }
         private TagCloudVisualizer visualizer;
-        public ConsoleUI(CloudCreater cloudCreater,IReader reader, ITextParser parser,TagCloudVisualizer visualizer, IImageSaver saver)
+        public ConsoleUI(CloudCreator cloudCreator,IReader reader, ITextParser parser,TagCloudVisualizer visualizer, IImageSaver saver)
         {
-            this.cloudCreater = cloudCreater;
+            this.cloudCreator = cloudCreator;
             this.reader = reader;
             this.saver = saver;
             this.visualizer = visualizer;
@@ -27,8 +27,8 @@ namespace ApplicationStart.UI
             CommandLine.Parser.Default.ParseArguments(Args, options);
             var text = reader.Read(options.InputFile);
             var words = parser.Parse(text);
-            cloudCreater.Create(words, options.MaxFontSize, options.MinFontSize, options.WordsCount, options.Font);
-            var bitmap = visualizer.Vizualize(cloudCreater.RectanglesCloud, Color.AliceBlue);
+            cloudCreator.Create(words, options.MaxFontSize, options.MinFontSize, options.WordsCount, options.Font);
+            var bitmap = visualizer.Vizualize(cloudCreator.RectanglesCloud, Color.AliceBlue);
             saver.Save(bitmap, options.OutputFile);
         }
     }

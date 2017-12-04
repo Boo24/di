@@ -24,7 +24,7 @@ namespace GUI
         private ITextParser parser;
         private IImageSaver saver;
         private Bitmap bitmap;
-        private CloudCreater cloudCreater;
+        private CloudCreator cloudCreator;
         private TagCloudVisualizer visualizer;
         private string inputFilename;
         private string outFilename;
@@ -33,10 +33,10 @@ namespace GUI
         public int WordsCount { get; set; } = 150;
         private string fontName = "Arial";
 
-        public TagCloudWindow(CloudCreater cloudCreater, IReader reader, ITextParser parser,
+        public TagCloudWindow(CloudCreator cloudCreator, IReader reader, ITextParser parser,
             TagCloudVisualizer visualizer, IImageSaver saver)
         {
-            this.cloudCreater = cloudCreater;
+            this.cloudCreator = cloudCreator;
             this.reader = reader;
             this.saver = saver;
             this.visualizer = visualizer;
@@ -84,11 +84,11 @@ namespace GUI
         private void CreateCloud_Click(object sender, RoutedEventArgs e)
         {
             canvas.Children.Clear();
-            cloudCreater.Clear();
+            cloudCreator.Clear();
             var text = GetText();
             var words = parser.Parse(text);
-            cloudCreater.Create(words, MaxFontSize, MinFontSize, WordsCount, fontName);
-            bitmap = visualizer.Vizualize(cloudCreater.RectanglesCloud, backgroundColor);
+            cloudCreator.Create(words, MaxFontSize, MinFontSize, WordsCount, fontName);
+            bitmap = visualizer.Vizualize(cloudCreator.RectanglesCloud, backgroundColor);
             var hBitmap = bitmap.GetHbitmap();
             var cloudImage = new Image
             {

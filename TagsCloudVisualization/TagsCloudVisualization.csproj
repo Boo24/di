@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultImageSaver.cs" />
-    <Compile Include="Geometry\CloudCreater.cs" />
+    <Compile Include="Geometry\CloudCreator.cs" />
     <Compile Include="Geometry\IFontColorSelector.cs" />
     <Compile Include="Geometry\IFontSizeСalculator.cs" />
     <Compile Include="Geometry\IRectanglesCloud.cs" />

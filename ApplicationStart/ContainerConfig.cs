@@ -15,31 +15,21 @@ namespace ApplicationStart
         public IContainer GetContainer(string[] args)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<ShortWordsFilter>().As<IWordsFilter>();
-            builder.RegisterType<TxtReader>().As<IReader>();
-            builder.RegisterType<TxtParser>().As<ITextParser>();
-            builder.RegisterType<CloudCreater>().AsSelf();
-            builder.RegisterType<WordsAnalyzer>().AsSelf();
-            builder.RegisterType<DefaultBlackList>().As<IBlackList>();
-            builder.RegisterType<RectanglesCloud>().As<IRectanglesCloud>();
-            builder.RegisterType<RandomColorSelector>().As<IFontColorSelector>();
-            builder.RegisterType<CircularLayouter>().As<ILayouter>();
-            builder.RegisterType<ArchimedeanSpiral>().As<ISpiral>();
-            builder.RegisterType<DefaultImageSaver>().As<IImageSaver>();
-            builder.RegisterType<PartOfSpeechFilter>().As<IWordsFilter>().WithParameter("excludedPartsOfSpeech", new List<PartsOfSpeech>()
-            {
-                PartsOfSpeech.Adjective,
-                PartsOfSpeech.Pronoun,
-                PartsOfSpeech.Interjection,
-                PartsOfSpeech.Particle,
-                PartsOfSpeech.Verb,
-                PartsOfSpeech.Preposition
-            });
-            builder.RegisterType<InitalFormConverter>().As<IWordConverter>();
-            builder.RegisterType<LogarithmicFontSizeCalculator>().As<IFontSizeСalculator>();
+            builder.RegisterAssemblyTypes(typeof(WordsAnalyzer).Assembly)
+                .WithParameter(
+                "excludedPartsOfSpeech",
+                new List<PartsOfSpeech>()
+                    {
+                        PartsOfSpeech.Adjective,
+                        PartsOfSpeech.Pronoun,
+                        PartsOfSpeech.Interjection,
+                        PartsOfSpeech.Particle,
+                        PartsOfSpeech.Verb,
+                        PartsOfSpeech.Preposition
+                    })
+                .AsSelf().AsImplementedInterfaces();
             builder.RegisterType<Gui>().AsSelf();
             builder.RegisterType<ConsoleUI>().AsSelf().WithProperty("Args", args);
-            builder.RegisterType<TagCloudVisualizer>().AsSelf();
             return builder.Build();
         }
     }
