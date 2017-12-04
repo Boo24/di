@@ -1,11 +1,6 @@
 ﻿using System.Collections.Generic;
 using ApplicationStart.UI;
 using Autofac;
-using Autofac.Core;
-using TagsCloudVisualization;
-using TagsCloudVisualization.Geometry;
-using TagsCloudVisualization.Geometry.Layouter;
-using TagsCloudVisualization.TextHandler;
 using TagsCloudVisualization.WordAnalyzer;
 
 namespace ApplicationStart
