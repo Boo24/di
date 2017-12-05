@@ -16,7 +16,9 @@ namespace TagsCloudVisualization.Geometry
         private IFontColorSelector colorSelector;
         private IFontSizeСalculator fontSizeСalculator;
         private WordsAnalyzer analizer;
-        public CloudCreator(WordsAnalyzer analizer,IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector, IFontSizeСalculator fontSizeСalculator)
+
+        public CloudCreator(WordsAnalyzer analizer, IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector,
+            IFontSizeСalculator fontSizeСalculator)
         {
             RectanglesCloud = rectanglesCloud;
             this.colorSelector = colorSelector;
@@ -24,15 +26,15 @@ namespace TagsCloudVisualization.Geometry
             this.fontSizeСalculator = fontSizeСalculator;
         }
 
-        public void Create(IEnumerable<string> wordsFlow, int maxFontSize, int minFontSize, int wordsCount, string fontName)
+        public void Create(IEnumerable<string> wordsFlow, int maxFontSize, int minFontSize, int wordsCount,
+            string fontName, HashSet<string> useFilters, HashSet<string> useConverters)
         {
-            var data = analizer.Analyze(wordsFlow, wordsCount);
-            var words = data.sortedWords;
+            var analyzeResult = analizer.Analyze(wordsFlow, wordsCount, useFilters, useConverters);
             this.minFontSize = minFontSize;
             this.maxFontSize = maxFontSize;
-            this.minCountOfOccurrences = data.minCount;
-            this.maxCountOfOccurrences = data.maxCount;
-            foreach (var word in words)
+            this.minCountOfOccurrences = analyzeResult.MinCountOfOccurrences;
+            this.maxCountOfOccurrences = analyzeResult.MaxCountOfOccurrences;
+            foreach (var word in analyzeResult.SortedWordsTop)
             {
                 var fontSize = CalculateWordSize(word);
                 var rectangleSize = CalculateRectangleSize(word, fontSize, fontName);
@@ -48,7 +50,7 @@ namespace TagsCloudVisualization.Geometry
         {
             var proposedSize = new Size(int.MaxValue, int.MaxValue);
             var flags = TextFormatFlags.NoPadding;
-            return TextRenderer.MeasureText(word.Text, new Font(fontName, wordSize), proposedSize,flags);
+            return TextRenderer.MeasureText(word.Text, new Font(fontName, wordSize), proposedSize, flags);
         }
 
         public void Clear() => RectanglesCloud.Restart();
