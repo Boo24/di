@@ -20,7 +20,7 @@ namespace ApplicationStart.UI
         [Option('f', "font", Required = false, DefaultValue = "Arial")]
         public string Font { get; set; }
 
-        [Option('c', "wCount", Required = false, DefaultValue = 200, HelpText = "Number of words in the cloud")]
+        [Option('c', "wCount", Required = false, HelpText = "Number of words in the cloud")]
         public int WordsCount { get; set; }
 
         [ParserState]

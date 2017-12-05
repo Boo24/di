@@ -5,8 +5,6 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class InitalFormConverter : IWordConverter
     {
-        public string Name { get; } = "Inital form converter";
-
         public IEnumerable<string> Convert(IEnumerable<string> words)
         {
             using (var hunspell = new Hunspell("en_US.aff", "en_US.dic"))

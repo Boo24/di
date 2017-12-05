@@ -59,14 +59,5 @@ namespace GUI.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Use {0}?.
-        /// </summary>
-        internal static string ConsoleUI_GetAgr_Use__0__ {
-            get {
-                return ResourceManager.GetString("ConsoleUI_GetAgr_Use__0__", resourceCulture);
-            }
-        }
     }
 }

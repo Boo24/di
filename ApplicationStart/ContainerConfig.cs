@@ -24,7 +24,7 @@ namespace ApplicationStart
                     })
                 .AsSelf().AsImplementedInterfaces();
             builder.RegisterType<Gui>().AsSelf();
-            builder.RegisterType<ConsoleUi>().AsSelf().WithProperty("Args", args);
+            builder.RegisterType<ConsoleUI>().AsSelf().WithProperty("Args", args);
             return builder.Build();
         }
     }

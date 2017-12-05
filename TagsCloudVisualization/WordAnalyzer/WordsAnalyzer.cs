@@ -6,32 +6,35 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class WordsAnalyzer
     {
-        private Dictionary<string, IWordsFilter> allFilters = new Dictionary<string, IWordsFilter>();
-        private Dictionary<string, IWordConverter> allConverters = new Dictionary<string, IWordConverter>();
+        private IBlackList blackList;
+        private IEnumerable<IWordsFilter> filters;
+        private IEnumerable<IWordConverter> converters;
 
-        public WordsAnalyzer(IEnumerable<IWordsFilter> filters, IEnumerable<IWordConverter> converters)
+        public WordsAnalyzer(IBlackList badWords, IEnumerable<IWordsFilter> filters,
+            IEnumerable<IWordConverter> converters)
         {
-            foreach (var filter in filters)
-                allFilters[filter.Name] = filter;
-            foreach (var converter in  converters)
-                allConverters[converter.Name] = converter;
+            blackList = badWords;
+            this.filters = filters;
+            this.converters = converters;
         }
 
-        public AnalyzeResult Analyze(IEnumerable<string> words, int wordsCount, HashSet<string> useFilters, HashSet<string> useConverters)
+        public (IEnumerable<Word> sortedWords, int minCount, int maxCount) Analyze(IEnumerable<string> words,
+            int wordsCount)
         {
-            var groupWords = GroupWords(ApplyConverters(words, useConverters));
-            var result = OrderInDescending(ApplyFilters(groupWords, useFilters)).Take(wordsCount);
+            var groupWords = GroupWords(ApplyConverters(words));
+            var result = OrderInDescending(ApplyFilters(FilterBadWords(groupWords))).Take(wordsCount);
             var borders = GetMinAndMaxCountOfOccurrences(result);
-            return new AnalyzeResult(borders.maxCount, borders.minCount, result);
+            return (result, borders.minCount, borders.maxCount);
         }
 
-        private List<Word> ApplyFilters(IEnumerable<Word> allwords, HashSet<string> useFilters)
-        {
-            return useFilters.Aggregate(allwords, (current, useFilter) => allFilters[useFilter].Filter(current)).ToList();
-        }
+        private List<Word> FilterBadWords(IEnumerable<Word> allWords) =>
+            allWords.Where(x => !blackList.Contains(x.Text)).ToList();
 
-        private IEnumerable<string> ApplyConverters(IEnumerable<string> words, HashSet<string> useConverters) =>
-            useConverters.Aggregate(words, (current, useConverter) => allConverters[useConverter].Convert(current));
+        private List<Word> ApplyFilters(IEnumerable<Word> allwords) =>
+            allwords.Where(w => filters.All(f => f.CheckWord(w))).ToList();
+
+        private IEnumerable<string> ApplyConverters(IEnumerable<string> words) =>
+            converters.Aggregate(words, (current, converter) => converter.Convert(current));
 
         private IEnumerable<Word> OrderInDescending(IEnumerable<Word> allWords) =>
             allWords.OrderByDescending(x => x.CountOfOccurrences);
@@ -41,7 +44,9 @@ namespace TagsCloudVisualization.WordAnalyzer
             if (words.FirstOrDefault() is null) return (0, 0);
             return (words.Last().CountOfOccurrences, words.First().CountOfOccurrences);
         }
+
         private IEnumerable<Word> GroupWords(IEnumerable<string> words)
-            => words.GroupBy(word => word, (word, eqWord) => new Word(word, eqWord.Count()), StringComparer.InvariantCultureIgnoreCase);
+            => words.GroupBy(word => word, (word, eqWord) => new Word(word, eqWord.Count()),
+                StringComparer.InvariantCultureIgnoreCase);
     }
 }
