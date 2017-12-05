@@ -65,12 +65,13 @@
     <Compile Include="Geometry\TagCloudVisualizer.cs" />
     <Compile Include="IImageSaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="TextHandler\IReader.cs" />
     <Compile Include="TextHandler\ITextParser.cs" />
     <Compile Include="TextHandler\TxtParser.cs" />
     <Compile Include="TextHandler\TxtReader.cs" />
+    <Compile Include="WordAnalyzer\AnalyzeResult.cs" />
     <Compile Include="WordAnalyzer\DefaultBlackList.cs" />
-    <Compile Include="WordAnalyzer\IBlackList.cs" />
     <Compile Include="WordAnalyzer\InitalFormConverter.cs" />
     <Compile Include="WordAnalyzer\IWordConverter.cs" />
     <Compile Include="WordAnalyzer\IWordsFilter.cs" />

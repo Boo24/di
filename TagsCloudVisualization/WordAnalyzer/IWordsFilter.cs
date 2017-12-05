@@ -1,7 +1,10 @@
-﻿namespace TagsCloudVisualization.WordAnalyzer
+﻿using System.Collections.Generic;
+
+namespace TagsCloudVisualization.WordAnalyzer
 {
     public interface IWordsFilter
     {
-        bool CheckWord(Word word);
+        IEnumerable<Word> Filter(IEnumerable<Word> words);
+        string Name { get; }
     }
 }
