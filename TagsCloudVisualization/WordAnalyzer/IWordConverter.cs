@@ -4,7 +4,12 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public interface IWordConverter
     {
-        string Name { get; }
+        WordsConverterType Type { get; }
         IEnumerable<string> Convert(IEnumerable<string> words);
+    }
+
+    public enum WordsConverterType
+    {
+        InitalFormConverter
     }
 }

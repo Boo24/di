@@ -6,7 +6,7 @@ namespace TagsCloudVisualization.WordAnalyzer
     public class ShortWordsFilter : IWordsFilter
     {
         private const int MinWordLength = 4;
-        public string Name { get; } = "Filter short words";
+        public FilterType Type { get; } = FilterType.FilterShortWords;
         public IEnumerable<Word> Filter(IEnumerable<Word> words) => words.Where(w => w.Text.Length >= MinWordLength);
     }
 }

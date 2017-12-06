@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using TagsCloudVisualization.WordAnalyzer;
 
 namespace TagsCloudVisualization
 {
@@ -10,7 +11,7 @@ namespace TagsCloudVisualization
         public int MaxFontSize { get; set; } = 24;
         public int WordsCount { get; set; } = 150;
         public string FontName { get; set; }= "Arial";
-        public HashSet<string> UseFilters { get; set; }= new HashSet<string>();
-        public HashSet<string> UseConverters { get; set; } = new HashSet<string>();
+        public HashSet<FilterType> UseFilters { get; set; } = new HashSet<FilterType>();
+        public HashSet<WordsConverterType> UseConverters { get; set; } = new HashSet<WordsConverterType>();
     }
 }

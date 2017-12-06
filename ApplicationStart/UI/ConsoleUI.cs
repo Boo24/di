@@ -17,7 +17,7 @@ namespace ApplicationStart.UI
         private IImageSaver saver;
         public string[] Args { get; set; }
         private TagCloudVisualizer visualizer;
-        public ConsoleUi(CloudCreator cloudCreator,IReader reader, ITextParser parser,TagCloudVisualizer visualizer, IImageSaver saver)
+        public ConsoleUi(CloudCreator cloudCreator, IReader reader, ITextParser parser,TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreator = cloudCreator;
             this.reader = reader;
@@ -40,38 +40,24 @@ namespace ApplicationStart.UI
             Console.ReadKey();
         }
 
-        private HashSet<string> GetFiltersNames()
+        private IEnumerable<FilterType> GetFiltersNames()
         {
-            var useFilters = new HashSet<string>();
-            var filters = typeof(WordsAnalyzer).Assembly.GetTypes().Where(type => type.GetInterfaces().Contains(typeof(IWordsFilter)));
-            foreach (var filter in filters)
-            {
-                var filterName = ((IWordsFilter)Activator.CreateInstance(filter)).Name;
-                if (GetAgr(filterName).Equals("Y", StringComparison.InvariantCultureIgnoreCase))
-                    useFilters.Add(filterName);
-            }
-            return useFilters;
-        }
+            return Enum.GetValues(typeof(FilterType))
+                .Cast<FilterType>()
+                .Where(t => GetAgr(t.ToString()).Equals("Y", StringComparison.InvariantCultureIgnoreCase));
 
-        private HashSet<string> GetConvertorsNames()
+        }
+        private IEnumerable<WordsConverterType> GetConvertorsNames()
         {
-            var useConverters = new HashSet<string>();
-            var converters = typeof(WordsAnalyzer).Assembly.GetTypes().Where(type => type.GetInterfaces().Contains(typeof(IWordConverter)));
-            foreach (var converter in converters)
-            {
-                var converterName = ((IWordConverter)Activator.CreateInstance(converter)).Name;
-                if (GetAgr(converterName).Equals("Y", StringComparison.InvariantCultureIgnoreCase))
-                    useConverters.Add(converterName);
-            }
-            return useConverters;
+            return Enum.GetValues(typeof(WordsConverterType))
+                .Cast<WordsConverterType>()
+                .Where(c => GetAgr(c.ToString()).Equals("Y", StringComparison.InvariantCultureIgnoreCase));
         }
 
         private string GetAgr(string arg)
         {
             Console.WriteLine($@"Use {arg}? (Y/N)");
             return Console.ReadLine();
-
-
         }
     }
 }

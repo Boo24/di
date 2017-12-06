@@ -6,18 +6,18 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class WordsAnalyzer
     {
-        private Dictionary<string, IWordsFilter> allFilters = new Dictionary<string, IWordsFilter>();
-        private Dictionary<string, IWordConverter> allConverters = new Dictionary<string, IWordConverter>();
+        private Dictionary<FilterType, IWordsFilter> allFilters = new Dictionary<FilterType, IWordsFilter>();
+        private Dictionary<WordsConverterType, IWordConverter> allConverters = new Dictionary<WordsConverterType, IWordConverter>();
 
         public WordsAnalyzer(IEnumerable<IWordsFilter> filters, IEnumerable<IWordConverter> converters)
         {
             foreach (var filter in filters)
-                allFilters[filter.Name] = filter;
+                allFilters[filter.Type] = filter;
             foreach (var converter in  converters)
-                allConverters[converter.Name] = converter;
+                allConverters[converter.Type] = converter;
         }
 
-        public AnalyzeResult Analyze(IEnumerable<string> words, int wordsCount, HashSet<string> useFilters, HashSet<string> useConverters)
+        public AnalyzeResult Analyze(IEnumerable<string> words, int wordsCount, IEnumerable<FilterType> useFilters, IEnumerable<WordsConverterType> useConverters)
         {
             var groupWords = GroupWords(ApplyConverters(words, useConverters));
             var result = OrderInDescending(ApplyFilters(groupWords, useFilters)).Take(wordsCount);
@@ -25,12 +25,10 @@ namespace TagsCloudVisualization.WordAnalyzer
             return new AnalyzeResult(borders.maxCount, borders.minCount, result);
         }
 
-        private List<Word> ApplyFilters(IEnumerable<Word> allwords, HashSet<string> useFilters)
-        {
-            return useFilters.Aggregate(allwords, (current, useFilter) => allFilters[useFilter].Filter(current)).ToList();
-        }
+        private List<Word> ApplyFilters(IEnumerable<Word> allwords, IEnumerable<FilterType> useFilters) =>
+            useFilters.Aggregate(allwords, (current, useFilter) => allFilters[useFilter].Filter(current)).ToList();
 
-        private IEnumerable<string> ApplyConverters(IEnumerable<string> words, HashSet<string> useConverters) =>
+        private IEnumerable<string> ApplyConverters(IEnumerable<string> words, IEnumerable<WordsConverterType> useConverters) =>
             useConverters.Aggregate(words, (current, useConverter) => allConverters[useConverter].Convert(current));
 
         private IEnumerable<Word> OrderInDescending(IEnumerable<Word> allWords) =>

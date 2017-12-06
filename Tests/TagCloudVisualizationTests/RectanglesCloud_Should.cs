@@ -21,7 +21,7 @@ namespace Tests.TagCloudVisualizationTests
         [Test]
         public void AddWordsInLayouterComponents()
         {
-            var words = new List<Word>() { new Word("acrosss", 2), new Word("aboutt", 2), new Word("abutt", 1) };
+            var words = new List<Word>{ new Word("acrosss", 2), new Word("aboutt", 2), new Word("abutt", 1) };
             foreach (var word in words)
                 rectCloud.PutNextWord(word, new Size(2, 3), 5, Brushes.AliceBlue, "Arial");
             rectCloud.LayouterComponents.Count.ShouldBeEquivalentTo(3);
@@ -30,7 +30,7 @@ namespace Tests.TagCloudVisualizationTests
         [Test]
         public void СalculateSizeCorrectly()
         {
-            var words = new List<Word>() { new Word("acrosss", 2), new Word("aboutt", 2), new Word("abutt", 1) };
+            var words = new List<Word> { new Word("acrosss", 2), new Word("aboutt", 2), new Word("abutt", 1) };
             foreach (var word in words)
                 rectCloud.PutNextWord(word, new Size(2, 3), 5, Brushes.AliceBlue, "Arial");
             rectCloud.Size.ShouldBeEquivalentTo(new Size(6, 5));

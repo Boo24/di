@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
@@ -15,6 +16,8 @@ namespace GUI
     public partial class SettingsWindow : Window
     {
         private Settings settings;
+        private Dictionary<string, FilterType> filtersTypes = new Dictionary<string, FilterType>();
+        private Dictionary<string, WordsConverterType> converterTypes = new Dictionary<string, WordsConverterType>();
         public SettingsWindow(Window main, Settings settings)
         {
             this.settings = settings;
@@ -45,45 +48,48 @@ namespace GUI
 
         private void CreateFiltersCheckBox()
         {
-           
-            var filters =  typeof(WordsAnalyzer).Assembly.GetTypes().Where(type => type.GetInterfaces().Contains(typeof(IWordsFilter)));
-            foreach (var filter in filters)
+            filtersTypes = Enum.GetValues(typeof(FilterType))
+                .Cast<FilterType>()
+                .ToDictionary(x => x.ToString(), y => y);
+            foreach (var filter in filtersTypes)
             {
-                var filterName = ((IWordsFilter)Activator.CreateInstance(filter)).Name;
-                var cb = new System.Windows.Controls.CheckBox() {Content = filterName};
+                var filterName = filter.Key;
+                var cb = new System.Windows.Controls.CheckBox() { Content = filterName };
                 cb.Checked += FiltersCheckBox_Checked;
                 cb.Unchecked += FiltersCheckBox_Unchecked;
                 FiltersPanel.Children.Add(cb);
-                if (settings.UseFilters.Contains(filterName))
+                if (settings.UseFilters.Contains(filter.Value))
                     cb.IsChecked = true;
 
             }
         }
         private void CreateConvertersCheckBox()
         {
-            var converters = typeof(WordsAnalyzer).Assembly.GetTypes().Where(type => type.GetInterfaces().Contains(typeof(IWordConverter)));
-            foreach (var converter in converters)
+            converterTypes = Enum.GetValues(typeof(WordsConverterType))
+                .Cast<WordsConverterType>()
+                .ToDictionary(x => x.ToString(), y => y);
+            foreach (var converter in converterTypes)
             {
-                var converterName = ((IWordConverter)Activator.CreateInstance(converter)).Name;
+                var converterName = converter.Key;
                 var cb = new System.Windows.Controls.CheckBox() { Content = converterName };
                 cb.Checked += ConvertersCheckBox_Checked;
                 cb.Unchecked += ConvertersCheckBox_Unchecked;
                 ConvertersPanel.Children.Add(cb);
-                if (settings.UseConverters.Contains(converterName))
+                if (settings.UseConverters.Contains(converter.Value))
                     cb.IsChecked = true;
 
             }
         }
         private void ConvertersCheckBox_Unchecked(object sender, RoutedEventArgs e) =>
-            settings.UseConverters.Remove(((System.Windows.Controls.CheckBox)sender).Content.ToString());
+            settings.UseConverters.Remove(converterTypes[((System.Windows.Controls.CheckBox)sender).Content.ToString()]);
         private void ConvertersCheckBox_Checked(object sender, RoutedEventArgs e) =>
-            settings.UseConverters.Add(((System.Windows.Controls.CheckBox)sender).Content.ToString());
+            settings.UseConverters.Add(converterTypes[((System.Windows.Controls.CheckBox)sender).Content.ToString()]);
 
         private void FiltersCheckBox_Unchecked(object sender, RoutedEventArgs e) =>
-            settings.UseFilters.Remove(((System.Windows.Controls.CheckBox) sender).Content.ToString());
+            settings.UseFilters.Remove(filtersTypes[((System.Windows.Controls.CheckBox)sender).Content.ToString()]);
 
         private void FiltersCheckBox_Checked(object sender, RoutedEventArgs e) =>
-            settings.UseFilters.Add(((System.Windows.Controls.CheckBox) sender).Content.ToString());
+            settings.UseFilters.Add(filtersTypes[((System.Windows.Controls.CheckBox)sender).Content.ToString()]);
 
         private void Save_Click(object sender, RoutedEventArgs e) => this.Close();
     }

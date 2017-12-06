@@ -8,7 +8,7 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class PartOfSpeechFilter : IWordsFilter
     {
-        public string Name { get; } = "Filter by parts of speech";
+        public FilterType Type { get; } = FilterType.PartsOfSpeechFilter;
         private readonly Dictionary<PartsOfSpeech, string[]> partsOfSpeechAndTags =
             new Dictionary<PartsOfSpeech, string[]>()
             {

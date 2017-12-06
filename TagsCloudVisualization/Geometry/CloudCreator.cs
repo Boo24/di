@@ -15,7 +15,7 @@ namespace TagsCloudVisualization.Geometry
         public IRectanglesCloud RectanglesCloud;
         private IFontColorSelector colorSelector;
         private IFontSizeСalculator fontSizeСalculator;
-        private WordsAnalyzer analizer;
+        private WordsAnalyzer analizer { get; }
 
         public CloudCreator(WordsAnalyzer analizer, IRectanglesCloud rectanglesCloud, IFontColorSelector colorSelector,
             IFontSizeСalculator fontSizeСalculator)
@@ -27,7 +27,7 @@ namespace TagsCloudVisualization.Geometry
         }
 
         public void Create(IEnumerable<string> wordsFlow, int maxFontSize, int minFontSize, int wordsCount,
-            string fontName, HashSet<string> useFilters, HashSet<string> useConverters)
+            string fontName, IEnumerable<FilterType> useFilters, IEnumerable<WordsConverterType> useConverters)
         {
             var analyzeResult = analizer.Analyze(wordsFlow, wordsCount, useFilters, useConverters);
             this.minFontSize = minFontSize;

@@ -5,7 +5,7 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class InitalFormConverter : IWordConverter
     {
-        public string Name { get; } = "Inital form converter";
+        public WordsConverterType Type { get; } = WordsConverterType.InitalFormConverter;
 
         public IEnumerable<string> Convert(IEnumerable<string> words)
         {

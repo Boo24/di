@@ -13,25 +13,25 @@ namespace Tests.TagCloudVisualizationTests
         private WordsAnalyzer analyzer;
         private Mock<IWordConverter> fakeConverter;
         private Mock<IWordsFilter> fakeFilter;
-        private HashSet<string> fakeConvertesNames;
-        private HashSet<string> fakeFiltersNames;
+        private HashSet<WordsConverterType> fakeConvertesNames;
+        private HashSet<FilterType> fakeFiltersNames;
         [SetUp]
         public void SetUp()
         {
 
-            fakeFiltersNames = new HashSet<string>() {"Filter short words"};
-            fakeConvertesNames = new HashSet<string>() {"Inital form converter"};
+            fakeFiltersNames = new HashSet<FilterType>() {FilterType.FilterShortWords};
+            fakeConvertesNames = new HashSet<WordsConverterType>() {WordsConverterType.InitalFormConverter};
             fakeConverter = new Mock<IWordConverter>();
             fakeFilter = new Mock<IWordsFilter>();
             fakeFilter
-                .SetupGet(m => m.Name)
-                .Returns("Filter short words");
+                .SetupGet(m => m.Type)
+                .Returns(FilterType.FilterShortWords);
             fakeFilter
                 .Setup(m => m.Filter(It.IsAny<IEnumerable<Word>>()))
                 .Returns<IEnumerable<Word>>(k => k);
             fakeConverter
-                .SetupGet(m => m.Name)
-                .Returns("Inital form converter");
+                .SetupGet(m => m.Type)
+                .Returns(WordsConverterType.InitalFormConverter);
             fakeConverter
                 .Setup(m => m.Convert(It.IsAny<IEnumerable<string>>()))
                 .Returns<IEnumerable<string>>(k => k);
