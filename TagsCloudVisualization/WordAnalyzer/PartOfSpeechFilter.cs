@@ -25,7 +25,6 @@ namespace TagsCloudVisualization.WordAnalyzer
         private IEnumerable<PartsOfSpeech> excludedPartsOfSpeech;
         private POSTaggerME PosTagger;
 
-        public PartOfSpeechFilter() { }
         public PartOfSpeechFilter(IEnumerable<PartsOfSpeech> excludedPartsOfSpeech)
         {
             this.excludedPartsOfSpeech = excludedPartsOfSpeech;
