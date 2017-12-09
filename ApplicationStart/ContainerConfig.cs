@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using ApplicationStart.UI;
 using Autofac;
 using TagsCloudVisualization.WordAnalyzer;
@@ -22,7 +23,9 @@ namespace ApplicationStart
                         PartsOfSpeech.Verb,
                         PartsOfSpeech.Preposition
                     })
-                .AsSelf().AsImplementedInterfaces();
+                .WithParameter("badWords", File.ReadAllLines("BoringWords.txt"))
+                .AsSelf()
+                .AsImplementedInterfaces();
             builder.RegisterType<Gui>().AsSelf();
             builder.RegisterType<ConsoleUi>().AsSelf().WithProperty("Args", args);
             return builder.Build();

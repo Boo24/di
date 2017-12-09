@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace TagsCloudVisualization.WordAnalyzer
@@ -8,7 +7,7 @@ namespace TagsCloudVisualization.WordAnalyzer
     {
         private string[] badWords;
         public FilterType Type { get; } = FilterType.BoringWordsFilter;
-        public DefaultBlackList() => badWords = File.ReadAllLines("BoringWords.txt");
+        public DefaultBlackList(string[] badWords) => this.badWords = badWords;
         public IEnumerable<Word> Filter(IEnumerable<Word> words) => words.Where(w => !badWords.Contains(w.Text));
     }
 }

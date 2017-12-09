@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultImageSaver.cs" />
+    <Compile Include="WordAnalyzer\DefaultImageSaver.cs" />
     <Compile Include="Geometry\CloudCreator.cs" />
     <Compile Include="Geometry\IFontColorSelector.cs" />
     <Compile Include="Geometry\IFontSizeСalculator.cs" />
@@ -72,10 +72,14 @@
     <Compile Include="TextHandler\TxtReader.cs" />
     <Compile Include="WordAnalyzer\AnalyzeResult.cs" />
     <Compile Include="WordAnalyzer\DefaultBlackList.cs" />
+    <Compile Include="WordAnalyzer\HunspellInitalFormFinder.cs" />
+    <Compile Include="WordAnalyzer\IInitalFormFinder.cs" />
     <Compile Include="WordAnalyzer\InitalFormConverter.cs" />
+    <Compile Include="WordAnalyzer\IPartsOfSpeechRecognizer.cs" />
     <Compile Include="WordAnalyzer\IWordConverter.cs" />
     <Compile Include="WordAnalyzer\IWordsFilter.cs" />
     <Compile Include="WordAnalyzer\PartOfSpeechFilter.cs" />
+    <Compile Include="WordAnalyzer\PartOfSpeechRecognizer.cs" />
     <Compile Include="WordAnalyzer\PartsOfSpeech.cs" />
     <Compile Include="WordAnalyzer\ShortWordsFilter.cs" />
     <Compile Include="WordAnalyzer\Word.cs" />

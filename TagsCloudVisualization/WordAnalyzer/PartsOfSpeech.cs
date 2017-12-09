@@ -9,6 +9,7 @@
         Interjection,
         Number,
         Adjective,
-        Preposition
+        Preposition,
+        Unknown
     }
 }
