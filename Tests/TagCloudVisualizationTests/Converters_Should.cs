@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Castle.Core.Internal;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -23,6 +25,7 @@ namespace Tests.TagCloudVisualizationTests
                 .Setup(m => m.Find(It.Is<IEnumerable<string>>(e => e.Contains("book") && e.Contains("books"))))
                 .Returns<IEnumerable<string>>(k => k.Where(s => s != "books").Append("book"));
             initalFormConverter = new InitalFormConverter(fakeIInitalFormFinder.Object);
+
 
         }
 

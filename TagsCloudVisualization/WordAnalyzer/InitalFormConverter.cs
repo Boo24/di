@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace TagsCloudVisualization.WordAnalyzer
 {
     public class InitalFormConverter : IWordConverter
