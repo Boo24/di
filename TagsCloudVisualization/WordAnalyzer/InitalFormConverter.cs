@@ -8,6 +8,6 @@ namespace TagsCloudVisualization.WordAnalyzer
         private IInitalFormFinder initalFormFinder;
         public InitalFormConverter(IInitalFormFinder initalFormFinder) => this.initalFormFinder = initalFormFinder;
 
-        public IEnumerable<string> Convert(IEnumerable<string> words) => initalFormFinder.Find(words);
+        public Result<IEnumerable<string>> Convert(IEnumerable<string> words) => initalFormFinder.Find(words);
     }
 }

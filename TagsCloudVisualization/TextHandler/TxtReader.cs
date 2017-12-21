@@ -4,6 +4,6 @@ namespace TagsCloudVisualization.TextHandler
 {
     public class TxtReader : IReader
     {
-        public string Read(string filename) => File.ReadAllText(filename);
+        public Result<string> Read(string filename) => Result.Of(() =>File.ReadAllText(filename));
     }
 }

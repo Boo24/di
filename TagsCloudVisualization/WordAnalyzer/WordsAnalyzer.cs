@@ -17,22 +17,34 @@ namespace TagsCloudVisualization.WordAnalyzer
                 allConverters[converter.Type] = converter;
         }
 
-        public AnalyzeResult Analyze(IEnumerable<string> words, int wordsCount, IEnumerable<FilterType> useFilters, IEnumerable<WordsConverterType> useConverters)
+        public Result<AnalyzeResult> Analyze(IEnumerable<string> words, int wordsCount, 
+            IEnumerable<FilterType> useFilters, IEnumerable<WordsConverterType> useConverters)
         {
-            var groupWords = GroupWords(ApplyConverters(words, useConverters));
-            var result = OrderInDescending(ApplyFilters(groupWords, useFilters)).Take(wordsCount);
-            var borders = GetMinAndMaxCountOfOccurrences(result);
-            return new AnalyzeResult(borders.maxCount, borders.minCount, result);
+            var groupWords = Result.Ok(words)
+                            .Then(w => ApplyConverters(w, useConverters))
+                            .Then(GroupWords)
+                            .Then(w => ApplyFilters(w, useFilters))
+                            .Then(r => OrderInDescendingTopWords(r, wordsCount).AsResult());
+            return groupWords
+                .Then(GetMinAndMaxCountOfOccurrences)
+                .Then( r => new AnalyzeResult(r.maxCount, r.minCount, groupWords.Value));
         }
 
-        private List<Word> ApplyFilters(IEnumerable<Word> allwords, IEnumerable<FilterType> useFilters) =>
-            useFilters.Aggregate(allwords, (current, useFilter) => allFilters[useFilter].Filter(current)).ToList();
+        private Result<IEnumerable<Word>> ApplyFilters(IEnumerable<Word> allwords, IEnumerable<FilterType> useFilters)
+        {
+            var res = Result.Ok(allwords);
+            return useFilters.Aggregate(res, (current, useFilter) => current.Then(w => allFilters[useFilter].Filter(w)));
+        }
 
-        private IEnumerable<string> ApplyConverters(IEnumerable<string> words, IEnumerable<WordsConverterType> useConverters) =>
-            useConverters.Aggregate(words, (current, useConverter) => allConverters[useConverter].Convert(current));
+        private Result<IEnumerable<string>> ApplyConverters(IEnumerable<string> words,
+            IEnumerable<WordsConverterType> useConverters)
+        {
+            var res = Result.Ok(words);
+            return  useConverters.Aggregate(res, (current, useConverter) => current.Then(w => allConverters[useConverter].Convert(w)));
+        }
 
-        private IEnumerable<Word> OrderInDescending(IEnumerable<Word> allWords) =>
-            allWords.OrderByDescending(x => x.CountOfOccurrences);
+        private IEnumerable<Word> OrderInDescendingTopWords(IEnumerable<Word> allWords, int wordsCount) =>
+            allWords.OrderByDescending(x => x.CountOfOccurrences).Take(wordsCount);
 
         private (int minCount, int maxCount) GetMinAndMaxCountOfOccurrences(IEnumerable<Word> words)
         {

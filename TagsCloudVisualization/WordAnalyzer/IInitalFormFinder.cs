@@ -4,6 +4,6 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public interface IInitalFormFinder
     {
-        IEnumerable<string> Find(IEnumerable<string> words);
+        Result<IEnumerable<string>> Find(IEnumerable<string> words);
     }
 }

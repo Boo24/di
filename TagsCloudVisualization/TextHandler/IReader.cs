@@ -2,6 +2,6 @@
 {
     public interface IReader
     {
-        string Read(string filename);
+        Result<string> Read(string filename);
     }
 }

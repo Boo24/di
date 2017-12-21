@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Result.cs" />
     <Compile Include="WordAnalyzer\DefaultImageSaver.cs" />
     <Compile Include="Geometry\CloudCreator.cs" />
     <Compile Include="Geometry\IFontColorSelector.cs" />

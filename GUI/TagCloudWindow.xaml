@@ -34,7 +34,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
+        <TextBlock  Name="ResultInformation" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="" TextAlignment="Center" FontFamily="Palatino Linotype" TextWrapping="Wrap" />
         <Button  Grid.Row="0" Grid.Column="1"  Content="Settings" IsDefault="True" Click="Settings_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="0" Grid.Column="3"   Content="Save" IsDefault="True" Click="Save_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="0" Grid.Column="0"  Content="Select file" IsDefault="True" Click="Open_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>

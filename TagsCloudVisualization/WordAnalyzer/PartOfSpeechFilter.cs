@@ -15,8 +15,21 @@ namespace TagsCloudVisualization.WordAnalyzer
             partOfSpeechRecognizer = recognizer;
         }
 
-        public IEnumerable<Word> Filter(IEnumerable<Word> words) =>
-            words.Where(w => w?.Text != null && !excludedPartsOfSpeech.Contains(partOfSpeechRecognizer.Recognize(w.Text)));
+        public Result<IEnumerable<Word>> Filter(IEnumerable<Word> words)
+        {
+            var result = new List<Word>();
+            foreach (var word in words)
+            {
+                if (word is null || word.Text is null) continue;
+                var recognizeResult = partOfSpeechRecognizer.Recognize(word.Text);
+                if (!recognizeResult.IsSuccess) return Result.Fail<IEnumerable<Word>>(recognizeResult.Error);
+                if (recognizeResult.IsSuccess && !excludedPartsOfSpeech.Contains(recognizeResult.Value))
+                    result.Add(word);
+
+            }
+            return Result.Ok((IEnumerable<Word>)result);
+        }
+
 
     }
 }

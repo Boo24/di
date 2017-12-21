@@ -2,6 +2,7 @@
 using TagsCloudVisualization;
 using TagsCloudVisualization.Geometry;
 using TagsCloudVisualization.TextHandler;
+using TagsCloudVisualization.WordAnalyzer;
 
 namespace ApplicationStart.UI
 {
@@ -12,18 +13,20 @@ namespace ApplicationStart.UI
         private IImageSaver saver;
         private ITextParser parser;
         private TagCloudVisualizer visualizer;
-        public Gui(CloudCreator cloudCreator, IReader reader, ITextParser parser, TagCloudVisualizer visualizer, IImageSaver saver)
+        private WordsAnalyzer analyzer;
+        public Gui(CloudCreator cloudCreator, WordsAnalyzer analyzer, IReader reader, ITextParser parser, TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreator = cloudCreator;
             this.reader = reader;
             this.saver = saver;
             this.visualizer = visualizer;
             this.parser = parser;
+            this.analyzer = analyzer;
         }
         public void Run()
         {
             var app = new App();
-            app.Run(new TagCloudWindow(cloudCreator, reader, parser, visualizer, saver));
+            app.Run(new TagCloudWindow(cloudCreator, analyzer, reader, parser, visualizer, saver));
         }
     }
 }

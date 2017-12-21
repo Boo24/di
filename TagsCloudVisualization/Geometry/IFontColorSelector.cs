@@ -5,6 +5,6 @@ namespace TagsCloudVisualization.Geometry
 {
     public interface IFontColorSelector
     {
-        Brush GetColorFor(Word word);
+        Result<Brush> GetColorFor(Word word);
     }
 }

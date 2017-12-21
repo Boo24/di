@@ -10,7 +10,7 @@ namespace TagsCloudVisualization.Geometry
 
         private readonly Random rnd;
         public RandomColorSelector() => rnd = new Random();
-        public Brush GetColorFor(Word word) => defaultPalette[rnd.Next(0, defaultPalette.Length - 1)];
+        public Result<Brush> GetColorFor(Word word) => Result.Ok(defaultPalette[rnd.Next(0, defaultPalette.Length - 1)]);
 
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using TagsCloudVisualization;
 using TagsCloudVisualization.Geometry;
 using TagsCloudVisualization.TextHandler;
+using TagsCloudVisualization.WordAnalyzer;
 using Image = System.Windows.Controls.Image;
 
 namespace GUI
@@ -23,9 +24,9 @@ namespace GUI
         private Settings settings = new Settings();
         private string inputFilename;
         private string outFilename;
+        private WordsAnalyzer analyzer;
 
-
-        public TagCloudWindow(CloudCreator cloudCreator, IReader reader, ITextParser parser,
+        public TagCloudWindow(CloudCreator cloudCreator, WordsAnalyzer analyzer, IReader reader, ITextParser parser,
             TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreator = cloudCreator;
@@ -33,6 +34,7 @@ namespace GUI
             this.saver = saver;
             this.visualizer = visualizer;
             this.parser = parser;
+            this.analyzer = analyzer;
             InitializeComponent();
             DataContext = this;
             this.Show();
@@ -49,6 +51,7 @@ namespace GUI
             if (openFileDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
             outFilename = openFileDialog.FileName;
             saver.Save(bitmap, outFilename);
+            ResultInformation.Text = $"Image saved to {outFilename}";
         }
 
 
@@ -63,10 +66,18 @@ namespace GUI
         {
             Canvas.Children.Clear();
             cloudCreator.Clear();
-            var text = GetText();
-            var words = parser.Parse(text);
-            cloudCreator.Create(words, settings.MaxFontSize, settings.MinFontSize, settings.WordsCount, settings.FontName, settings.UseFilters, settings.UseConverters);
-            bitmap = visualizer.Vizualize(cloudCreator.RectanglesCloud, settings.BackgroundColor);
+            GetText()
+            .Then(parser.Parse)
+            .Then(w => analyzer.Analyze(w, settings.WordsCount, settings.UseFilters, settings.UseConverters))
+            .Then(w => cloudCreator.Create(w, settings.MaxFontSize, settings.MinFontSize, settings.FontName))
+            .Then(rc => visualizer.Vizualize(rc, settings.BackgroundColor))
+            .Then(PutCloudOnCanvas)
+            .OnFail(r => ResultInformation.Text = r);
+        }
+
+        private Result<bool> PutCloudOnCanvas(Bitmap btm)
+        {
+            bitmap = btm;
             var hBitmap = bitmap.GetHbitmap();
             var cloudImage = new Image
             {
@@ -80,9 +91,11 @@ namespace GUI
                 Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             cloudImage.EndInit();
             Canvas.Children.Add(cloudImage);
+            return Result.Ok(true);
         }
 
-        private string GetText() => inputFilename!=null ? reader.Read(inputFilename) : "";
+
+        private Result<string> GetText() => inputFilename!=null ? reader.Read(inputFilename) : Result.Ok("");
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {

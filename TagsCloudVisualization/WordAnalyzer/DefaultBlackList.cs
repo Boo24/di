@@ -8,6 +8,8 @@ namespace TagsCloudVisualization.WordAnalyzer
         private string[] badWords;
         public FilterType Type { get; } = FilterType.BoringWordsFilter;
         public DefaultBlackList(string[] badWords) => this.badWords = badWords;
-        public IEnumerable<Word> Filter(IEnumerable<Word> words) => words.Where(w => !badWords.Contains(w.Text));
+        public Result<IEnumerable<Word>> Filter(IEnumerable<Word> words) => Result.Of(() =>words.Where(w => !badWords.Contains(w.Text)));
+
+        
     }
 }

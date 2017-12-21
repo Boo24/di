@@ -1,9 +1,13 @@
 ﻿using System.Drawing;
 
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.WordAnalyzer
 {
     public class DefaultImageSaver : IImageSaver
     {
-        public void Save(Bitmap bitmap, string filename) => bitmap.Save(filename);
+        public Bitmap Save(Bitmap bitmap, string filename)
+        {
+            bitmap.Save(filename);
+            return bitmap;
+        }
     }
 }

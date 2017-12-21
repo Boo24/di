@@ -7,6 +7,7 @@ namespace TagsCloudVisualization.WordAnalyzer
     {
         private const int MinWordLength = 4;
         public FilterType Type { get; } = FilterType.FilterShortWords;
-        public IEnumerable<Word> Filter(IEnumerable<Word> words) => words.Where(w => w?.Text != null && w.Text.Length >= MinWordLength);
+        public Result<IEnumerable<Word>> Filter(IEnumerable<Word> words)
+            => Result.Of(() =>words.Where(w => w?.Text != null && w.Text.Length >= MinWordLength));
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using SharpNL.POSTag;
 
@@ -7,7 +6,7 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class PartOfSpeechRecognizer : IPartsOfSpeechRecognizer
     {
-        private POSTaggerME PosTagger;
+        private Result<POSTaggerME> PosTagger;
         private readonly Dictionary<PartsOfSpeech, string[]> partsOfSpeechAndTags =
             new Dictionary<PartsOfSpeech, string[]>()
             {
@@ -21,17 +20,14 @@ namespace TagsCloudVisualization.WordAnalyzer
                 {PartsOfSpeech.Adjective, new[] {"JJ", "JJR", "JJS", "WDT"}},
                 {PartsOfSpeech.Preposition, new[] {"IN"}}
             };
-        public PartOfSpeechRecognizer()
+        public PartOfSpeechRecognizer() =>
+            PosTagger = Result.Of(() => new POSModel("en-pos-maxent.bin")).Then(r => new POSTaggerME(r));
+
+        public Result<PartsOfSpeech> Recognize(string word)
         {
-            POSModel posModel;
-            using (var modelFile = new FileStream("en-pos-maxent.bin", FileMode.Open))
-                posModel = new POSModel(modelFile);
-            PosTagger = new POSTaggerME(posModel);
-        }
-        public PartsOfSpeech Recognize(string word)
-        {
-           var partOfSpeech = PosTagger.Tag(new[] { word });
-           return partsOfSpeechAndTags.FirstOrDefault(k => k.Value.Contains(partOfSpeech[0])).Key;
+            if (!PosTagger.IsSuccess) return Result.Fail<PartsOfSpeech>(PosTagger.Error).RefineError("No resolver");
+            var partOfSpeech = PosTagger.Value.Tag(new[] {word});
+            return partsOfSpeechAndTags.FirstOrDefault(k => k.Value.Contains(partOfSpeech[0])).Key.AsResult();
         }
     }
 }

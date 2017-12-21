@@ -4,7 +4,7 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public interface IWordsFilter
     {
-        IEnumerable<Word> Filter(IEnumerable<Word> words);
+        Result<IEnumerable<Word>> Filter(IEnumerable<Word> words);
         FilterType Type { get; }
     }
 

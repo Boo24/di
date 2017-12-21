@@ -17,26 +17,34 @@ namespace ApplicationStart.UI
         private IImageSaver saver;
         public string[] Args { get; set; }
         private TagCloudVisualizer visualizer;
-        public ConsoleUi(CloudCreator cloudCreator, IReader reader, ITextParser parser,TagCloudVisualizer visualizer, IImageSaver saver)
+        private WordsAnalyzer analyzer;
+        public ConsoleUi(CloudCreator cloudCreator, IReader reader, ITextParser parser, WordsAnalyzer analyzer, TagCloudVisualizer visualizer, IImageSaver saver)
         {
             this.cloudCreator = cloudCreator;
             this.reader = reader;
             this.saver = saver;
             this.visualizer = visualizer;
             this.parser = parser;
+            this.analyzer = analyzer;
         }
         public void Run()
         {
             var options = new Options();
             CommandLine.Parser.Default.ParseArguments(Args, options);
-            var text = reader.Read(options.InputFile);
-            var words = parser.Parse(text);
             var useFilters = GetFiltersNames();
             var useConverters = GetConvertorsNames();
-            cloudCreator.Create(words, options.MaxFontSize, options.MinFontSize, options.WordsCount, options.Font, useFilters, useConverters);
-            var bitmap = visualizer.Vizualize(cloudCreator.RectanglesCloud, Color.AliceBlue);
-            saver.Save(bitmap, options.OutputFile);
-            Console.WriteLine($@"Image saved to {options.OutputFile}");
+            var createCloud = reader.Read(options.InputFile)
+                .Then(parser.Parse)
+                .Then(r => analyzer.Analyze(r, options.WordsCount, useFilters, useConverters))
+                .Then(r => cloudCreator.Create(r, options.MaxFontSize, options.MinFontSize, options.Font))
+                .Then(rc => visualizer.Vizualize(rc, Color.AliceBlue))
+                .Then(r => Result.Ok(saver.Save(r, options.OutputFile)))
+                .OnFail(Console.WriteLine);
+            if (createCloud.IsSuccess)
+            {
+                saver.Save(createCloud.Value, options.OutputFile);
+                Console.WriteLine($@"Image saved to {options.OutputFile}");
+            }
             Console.ReadKey();
         }
 
@@ -44,14 +52,14 @@ namespace ApplicationStart.UI
         {
             return Enum.GetValues(typeof(FilterType))
                 .Cast<FilterType>()
-                .Where(t => GetAgr(t.ToString()).Equals("Y", StringComparison.InvariantCultureIgnoreCase));
+                .Where(t => GetAgr(t.ToString()).Equals("Y", StringComparison.InvariantCultureIgnoreCase)).ToList();
 
         }
         private IEnumerable<WordsConverterType> GetConvertorsNames()
         {
             return Enum.GetValues(typeof(WordsConverterType))
                 .Cast<WordsConverterType>()
-                .Where(c => GetAgr(c.ToString()).Equals("Y", StringComparison.InvariantCultureIgnoreCase));
+                .Where(c => GetAgr(c.ToString()).Equals("Y", StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
 
         private string GetAgr(string arg)

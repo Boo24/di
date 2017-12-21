@@ -2,6 +2,6 @@
 {
     public interface IPartsOfSpeechRecognizer
     {
-        PartsOfSpeech Recognize(string word);
+        Result<PartsOfSpeech> Recognize(string word);
     }
 }
