@@ -5,7 +5,11 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class HunspellInitalFormFinder : IInitalFormFinder
     {
-        public Result<IEnumerable<string>> Find(IEnumerable<string> words) => Result.Of(() => FindInitalForm(words));
+        public Result<IEnumerable<string>> Find(IEnumerable<string> words)
+        {
+            var actResult = Result.Of(() => FindInitalForm(words));
+            return actResult.IsSuccess ? actResult : Result.Warning(actResult.ErrorMessage, words).RefineError("NHunspell error");
+        }
 
         private IEnumerable<string> FindInitalForm(IEnumerable<string> words)
         {

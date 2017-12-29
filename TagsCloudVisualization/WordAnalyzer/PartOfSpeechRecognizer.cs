@@ -25,7 +25,7 @@ namespace TagsCloudVisualization.WordAnalyzer
 
         public Result<PartsOfSpeech> Recognize(string word)
         {
-            if (!PosTagger.IsSuccess) return Result.Fail<PartsOfSpeech>(PosTagger.Error).RefineError("No resolver");
+            if (!PosTagger.IsSuccess) return Result.Fail<PartsOfSpeech>(PosTagger.ErrorMessage).RefineError("No resolver");
             var partOfSpeech = PosTagger.Value.Tag(new[] {word});
             return partsOfSpeechAndTags.FirstOrDefault(k => k.Value.Contains(partOfSpeech[0])).Key.AsResult();
         }

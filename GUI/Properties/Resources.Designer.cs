@@ -68,5 +68,14 @@ namespace GUI.Properties {
                 return ResourceManager.GetString("ConsoleUI_GetAgr_Use__0__", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Error :.
+        /// </summary>
+        internal static string ConsoleUi_Run_Error__ {
+            get {
+                return ResourceManager.GetString("ConsoleUi_Run_Error__", resourceCulture);
+            }
+        }
     }
 }

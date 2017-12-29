@@ -4,10 +4,11 @@ namespace TagsCloudVisualization.WordAnalyzer
 {
     public class DefaultImageSaver : IImageSaver
     {
-        public Bitmap Save(Bitmap bitmap, string filename)
-        {
-            bitmap.Save(filename);
-            return bitmap;
-        }
+        public Result<Bitmap> Save(Bitmap bitmap, string filename) => 
+            Result.Of(() =>
+            {
+                bitmap.Save(filename);
+                return bitmap;
+            });
     }
 }

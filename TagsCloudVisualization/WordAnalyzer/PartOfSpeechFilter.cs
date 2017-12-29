@@ -22,10 +22,9 @@ namespace TagsCloudVisualization.WordAnalyzer
             {
                 if (word is null || word.Text is null) continue;
                 var recognizeResult = partOfSpeechRecognizer.Recognize(word.Text);
-                if (!recognizeResult.IsSuccess) return Result.Fail<IEnumerable<Word>>(recognizeResult.Error);
-                if (recognizeResult.IsSuccess && !excludedPartsOfSpeech.Contains(recognizeResult.Value))
+                if (!recognizeResult.IsSuccess) return Result.Warning(recognizeResult.ErrorMessage, words);
+                if (!excludedPartsOfSpeech.Contains(recognizeResult.Value))
                     result.Add(word);
-
             }
             return Result.Ok((IEnumerable<Word>)result);
         }

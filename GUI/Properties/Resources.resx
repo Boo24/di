@@ -117,4 +117,7 @@
   <data name="ConsoleUI_GetAgr_Use__0__" xml:space="preserve">
     <value>Use {0}?</value>
   </data>
+  <data name="ConsoleUi_Run_Error__" xml:space="preserve">
+    <value>Error :</value>
+  </data>
 </root>

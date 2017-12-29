@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-               Title="Визуализатор облака тегов" Height="638.333" Width="700" 
+               Title="Визуализатор облака тегов" Height="800" Width="800" 
         Background="Lavender" WindowStyle="ThreeDBorderWindow">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -33,13 +33,14 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock  Name="ResultInformation" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="" TextAlignment="Center" FontFamily="Palatino Linotype" TextWrapping="Wrap" />
+        <TextBlock  Name="ResultInformation" Grid.Row="1" Grid.RowSpan ="2" Grid.Column="0" Grid.ColumnSpan="4" Text="" TextAlignment="Left" FontFamily="Palatino Linotype" TextWrapping="Wrap" />
         <Button  Grid.Row="0" Grid.Column="1"  Content="Settings" IsDefault="True" Click="Settings_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="0" Grid.Column="3"   Content="Save" IsDefault="True" Click="Save_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="0" Grid.Column="0"  Content="Select file" IsDefault="True" Click="Open_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
         <Button  Grid.Row="0" Grid.Column="2"   Content="Create cloud" IsDefault="True" Click="CreateCloud_Click" Background="LavenderBlush" FontFamily="Palatino Linotype" BorderBrush="Lavender"/>
-        <ScrollViewer Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="14"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="14"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
             <Canvas x:Name="Canvas"/>
         </ScrollViewer>
     </Grid>

@@ -31,9 +31,9 @@ namespace TagsCloudVisualization.Geometry
                 {
                     var fontSize = CalculateWordSize(word);
                     var rectangleSize = fontSize.Then(fz => CalculateRectangleSize(word, fz, fontName));
-                    if (!rectangleSize.IsSuccess) return Result.Fail<IRectanglesCloud>(rectangleSize.Error);
+                    if (!rectangleSize.IsSuccess) return Result.Fail<IRectanglesCloud>(rectangleSize.ErrorMessage);
                     var wordColor = colorSelector.GetColorFor(word);
-                    if (!wordColor.IsSuccess) return Result.Fail<IRectanglesCloud>(wordColor.Error);
+                    if (!wordColor.IsSuccess) return Result.Fail<IRectanglesCloud>(wordColor.ErrorMessage);
                     RectanglesCloud.PutNextWord(word, rectangleSize.Value, fontSize.Value, wordColor.Value, fontName);
                 }
                 return RectanglesCloud.AsResult();

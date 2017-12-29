@@ -38,13 +38,11 @@ namespace ApplicationStart.UI
                 .Then(r => analyzer.Analyze(r, options.WordsCount, useFilters, useConverters))
                 .Then(r => cloudCreator.Create(r, options.MaxFontSize, options.MinFontSize, options.Font))
                 .Then(rc => visualizer.Vizualize(rc, Color.AliceBlue))
-                .Then(r => Result.Ok(saver.Save(r, options.OutputFile)))
-                .OnFail(Console.WriteLine);
+                .Then(r => Result.Ok(saver.Save(r, options.OutputFile)))       
+                .OnFail(r => Console.WriteLine($"Error:\n\t{r}"))
+                .OnWarning(r => Console.WriteLine($"Warnings:\n {r}"));
             if (createCloud.IsSuccess)
-            {
-                saver.Save(createCloud.Value, options.OutputFile);
                 Console.WriteLine($@"Image saved to {options.OutputFile}");
-            }
             Console.ReadKey();
         }
 

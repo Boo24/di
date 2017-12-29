@@ -72,7 +72,8 @@ namespace GUI
             .Then(w => cloudCreator.Create(w, settings.MaxFontSize, settings.MinFontSize, settings.FontName))
             .Then(rc => visualizer.Vizualize(rc, settings.BackgroundColor))
             .Then(PutCloudOnCanvas)
-            .OnFail(r => ResultInformation.Text = r);
+            .OnFail(r => ResultInformation.Text = $"Error:\n\t{r}")
+            .OnWarning(r => ResultInformation.Text += $"\nWarnings:\n{r}");
         }
 
         private Result<bool> PutCloudOnCanvas(Bitmap btm)
@@ -93,7 +94,6 @@ namespace GUI
             Canvas.Children.Add(cloudImage);
             return Result.Ok(true);
         }
-
 
         private Result<string> GetText() => inputFilename!=null ? reader.Read(inputFilename) : Result.Ok("");
 
